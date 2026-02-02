@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Beauty School Design System - Premium & Feminine */
+
+@layer base {
+  :root {
+    /* Primary - Burgundy */
+    --primary: 355 44% 32%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 355 44% 26%;
+    
+    /* Accent - Gold */
+    --gold: 43 56% 52%;
+    --gold-foreground: 355 44% 20%;
+    --accent: 43 56% 52%;
+    --accent-foreground: 355 44% 20%;
+    
+    /* Background */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 15%;
+    
+    /* Muted - Light gray */
+    --muted: 0 0% 98%;
+    --muted-foreground: 0 0% 45%;
+    
+    /* Secondary */
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 20%;
+    
+    /* Card */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 15%;
+    
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 15%;
+    
+    /* Border */
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 355 44% 32%;
+    
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --radius: 0.5rem;
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 20%;
+    --sidebar-primary: 355 44% 32%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 15%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 355 44% 32%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-weight: 400;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-4 py-12 md:px-6 md:py-16 lg:py-20;
+  }
+
+  .container-narrow {
+    @apply max-w-6xl mx-auto;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground px-6 py-3 rounded-md font-medium 
+           transition-all duration-300 ease-out
+           hover:bg-primary-hover hover:shadow-lg
+           border-2 border-transparent hover:border-gold;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary text-primary px-6 py-3 rounded-md font-medium
+           transition-all duration-300 ease-out
+           hover:bg-primary hover:text-primary-foreground;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 ease-out hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-gold bg-clip-text text-transparent;
+  }
+
+  .gold-border {
+    @apply border-2 border-gold;
+  }
+
+  .section-title {
+    @apply text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-foreground text-center mb-8 md:mb-12;
+  }
+}
+
+@layer utilities {
+  .animate-delay-0 {
+    animation-delay: 0ms;
+  }
+  .animate-delay-50 {
+    animation-delay: 50ms;
+  }
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+  .animate-delay-150 {
+    animation-delay: 150ms;
+  }
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animate-delay-250 {
+    animation-delay: 250ms;
+  }
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animate-delay-400 {
+    animation-delay: 400ms;
+  }
+  .animate-delay-500 {
+    animation-delay: 500ms;
+  }
+}
