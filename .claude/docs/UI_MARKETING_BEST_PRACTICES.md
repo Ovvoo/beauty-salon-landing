@@ -117,6 +117,7 @@ className="px-4 sm:px-6 lg:px-8"
 **Источники:**
 - [TheeDigital Web Design Trends 2026](https://www.theedigital.com/blog/web-design-trends)
 - [ContentSquare Trends](https://contentsquare.com/guides/web-design/trends/)
+- [Lexington Themes Hero Sections 2026](https://lexingtonthemes.com/blog/stunning-hero-sections-2026)
 
 ### Типографика
 - **Variable fonts** — один файл, бесконечные вариации
@@ -126,7 +127,7 @@ className="px-4 sm:px-6 lg:px-8"
 ### Mobile-First Hero
 | Аспект | Рекомендация |
 |--------|--------------|
-| Высота viewport | 50-70% mobile, 60-100% desktop |
+| Высота viewport | 28-35svh mobile, 60-75vh desktop |
 | Layout | Вертикальный стек на mobile |
 | Изображения | Vertical-first (портрет) |
 | CTA | Thumb-accessible (нижняя часть экрана) |
@@ -137,6 +138,43 @@ className="px-4 sm:px-6 lg:px-8"
 - Минимум элементов
 - Один четкий CTA
 - Негативное пространство
+
+### Современные UI элементы Hero Section 2026
+
+| Элемент | Описание | Реализация |
+|---------|----------|------------|
+| **Badge** | Индикатор с пульсацией | `animate-pulse` на цветном кружке + текст |
+| **SVG underline** | Волнистое подчёркивание под акцентом | `<svg>` с Q-curve path под текстом |
+| **Rounded image** | Изображение в контейнере с закруглением | `rounded-3xl` + `shadow-2xl` |
+| **Floating card** | Social proof карточка поверх изображения | `absolute` + `bg-card` + аватарки |
+| **Organic shape** | Декоративная форма на фоне | `bg-muted/30` + `rounded-bl-[4rem]` |
+| **Dual CTA** | Две кнопки разного стиля | Primary (filled) + Outline |
+| **Asymmetric layout** | Неравное распределение | 45% текст / 55% изображение |
+
+### Адаптивность Hero для разных экранов
+
+```tsx
+// Размеры изображения по breakpoints (Mobile First)
+className="h-[28svh] sm:h-[35svh] md:h-[60vh] lg:h-[70vh] xl:h-[75vh]"
+
+// Шрифт заголовка
+className="text-[22px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
+
+// Floating card масштабирование
+className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10" // аватарки
+className="text-[11px] sm:text-sm md:text-base"   // текст
+
+// Padding для маленьких экранов
+className="py-4 sm:py-6 md:py-16 pb-8 sm:pb-10"
+```
+
+### Принципы адаптивности на маленьких экранах
+
+1. **Изображение уменьшается пропорционально** — 28svh на tiny, 75vh на desktop
+2. **Контент компактнее** — меньше отступы и шрифты на маленьких экранах
+3. **Floating card масштабируется** — аватарки 24px mobile → 40px desktop
+4. **Весь контент видим** — кнопки и статистика всегда в viewport
+5. **Touch targets соблюдаются** — минимум 44px для кнопок (WCAG AAA)
 
 ---
 
