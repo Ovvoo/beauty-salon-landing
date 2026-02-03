@@ -21,6 +21,7 @@ interface Course {
   price: number;
   features: string[];
   telegramLink: string;
+  targetAudience: string[];
 }
 
 const courses: Course[] = [
@@ -35,6 +36,10 @@ const courses: Course[] = [
     price: 4990,
     features: ["12 видеоуроков", "Чек-листы", "Сертификат"],
     telegramLink: "https://t.me/+dPAUJ0m4mRdlMTcy",
+    targetAudience: [
+      "Новичок и хочешь получить новую востребованную профессию",
+      "Начинающий мастер, который не чувствует себя уверенным на практике",
+    ],
   },
   {
     id: 2,
@@ -47,6 +52,10 @@ const courses: Course[] = [
     price: 6990,
     features: ["18 видеоуроков", "Разбор ошибок", "Сертификат"],
     telegramLink: "https://t.me/+zm-FH44lwYQzZmNi",
+    targetAudience: [
+      "Уже наращиваешь классику и хочешь освоить 2D и 3D",
+      "Хочешь поднять средний чек и расширить клиентскую базу",
+    ],
   },
   {
     id: 3,
@@ -59,6 +68,10 @@ const courses: Course[] = [
     price: 2990,
     features: ["8 видеоуроков", "Список материалов", "Сертификат"],
     telegramLink: "https://t.me/+-QbgHlt4epNjMGUy",
+    targetAudience: [
+      "Хочешь освоить быструю процедуру с высоким спросом",
+      "Хочешь научиться индивидуальному моделированию ресничек",
+    ],
   },
   {
     id: 4,
@@ -71,6 +84,10 @@ const courses: Course[] = [
     price: 8990,
     features: ["24 видеоурока", "Схемы эффектов", "Сертификат"],
     telegramLink: "https://t.me/+PuHWyKZ-_7NmMTli",
+    targetAudience: [
+      "Хочешь повысить квалификацию мастера по наращиванию",
+      "Хочешь увеличить прайс или получить повышение в салоне",
+    ],
   },
   {
     id: 5,
@@ -83,6 +100,10 @@ const courses: Course[] = [
     price: 4990,
     features: ["10 видеоуроков", "Трендовые техники", "Сертификат"],
     telegramLink: "https://t.me/+yQA-LV8MUpczMzVi",
+    targetAudience: [
+      "Хочешь освоить трендовую технику мокрых ресниц",
+      "Желаешь принимать больше клиентов и увеличить прайс",
+    ],
   },
   {
     id: 6,
@@ -95,6 +116,10 @@ const courses: Course[] = [
     price: 7990,
     features: ["14 видеоуроков", "Техника объёмов", "Сертификат"],
     telegramLink: "https://t.me/+5FTZaPTYLf81ODBi",
+    targetAudience: [
+      "Имеешь опыт объёмного наращивания",
+      "Хочешь пополнить арсенал уникальной техникой",
+    ],
   },
   {
     id: 7,
@@ -107,6 +132,10 @@ const courses: Course[] = [
     price: 3990,
     features: ["10 видеоуроков", "Схемы построения", "Сертификат"],
     telegramLink: "https://t.me/+Vrbz-G4MEWBmZjI6",
+    targetAudience: [
+      "Хочешь обучиться ламинированию бровей для себя",
+      "Практикующий бровист и хочешь освоить новую технику",
+    ],
   },
 ];
 
