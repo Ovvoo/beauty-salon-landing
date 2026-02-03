@@ -9,13 +9,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { CheckCircle, Send, Award, Lock } from "lucide-react";
+import { CheckCircle, Send, Award } from "lucide-react";
 
 interface Course {
   id: number;
   title: string;
   price: number;
   oldPrice: number;
+  telegramLink: string;
 }
 
 interface PaymentModalProps {
@@ -25,28 +26,26 @@ interface PaymentModalProps {
 }
 
 const PaymentModal = ({ course, open, onOpenChange }: PaymentModalProps) => {
-  const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [telegram, setTelegram] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !course) return;
+    if (!telegram || !course) return;
 
-    setIsSubmitting(true);
+    // Открываем Telegram-канал курса в новой вкладке
+    window.open(course.telegramLink, "_blank");
 
-    // Имитация обработки оплаты
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    // Закрываем модальное окно и сбрасываем форму
+    setTelegram("");
+    onOpenChange(false);
+  };
 
-    setIsSubmitting(false);
-    setIsSuccess(true);
-
-    // Сброс через 3 секунды
-    setTimeout(() => {
-      setIsSuccess(false);
-      setEmail("");
-      onOpenChange(false);
-    }, 3000);
+  // Форматируем ввод Telegram username
+  const handleTelegramChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value;
+    // Убираем @ если пользователь ввёл его, мы добавим сами
+    value = value.replace(/^@/, "");
+    setTelegram(value);
   };
 
   if (!course) return null;
@@ -56,122 +55,102 @@ const PaymentModal = ({ course, open, onOpenChange }: PaymentModalProps) => {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="font-heading text-xl">
-            {isSuccess ? "Оплата успешна!" : "Оформление заказа"}
+            Записаться на курс
           </DialogTitle>
           <DialogDescription>
-            {isSuccess
-              ? "Проверьте вашу почту"
-              : course.title}
+            {course.title}
           </DialogDescription>
         </DialogHeader>
 
-        {isSuccess ? (
-          <div className="py-8 text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <CheckCircle className="w-10 h-10 text-green-600" />
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Course Info */}
+          <div className="bg-muted rounded-lg p-4">
+            <div className="flex justify-between items-center">
+              <span className="text-muted-foreground">Курс:</span>
+              <span className="font-medium text-foreground">{course.title}</span>
             </div>
-            <h3 className="font-heading font-semibold text-lg mb-2">
-              Спасибо за покупку!
-            </h3>
-            <p className="text-muted-foreground text-sm mb-4">
-              На указанный email отправлены:
-            </p>
-            <div className="space-y-2 text-left max-w-xs mx-auto">
-              <div className="flex items-center gap-3 text-sm">
-                <Award className="w-5 h-5 text-primary" />
-                <span>Сертификат о прохождении</span>
-              </div>
-              <div className="flex items-center gap-3 text-sm">
-                <Send className="w-5 h-5 text-primary" />
-                <span>Ссылка на закрытый Telegram-канал</span>
+            <div className="flex justify-between items-center mt-2">
+              <span className="text-muted-foreground">Стоимость:</span>
+              <div className="flex items-center gap-2">
+                <span className="line-through text-muted-foreground text-sm">
+                  {course.oldPrice.toLocaleString()} ₽
+                </span>
+                <span className="font-bold text-primary text-lg">
+                  {course.price.toLocaleString()} ₽
+                </span>
               </div>
             </div>
           </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Course Info */}
-            <div className="bg-muted rounded-lg p-4">
-              <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Курс:</span>
-                <span className="font-medium text-foreground">{course.title}</span>
-              </div>
-              <div className="flex justify-between items-center mt-2">
-                <span className="text-muted-foreground">Стоимость:</span>
-                <div className="flex items-center gap-2">
-                  <span className="line-through text-muted-foreground text-sm">
-                    {course.oldPrice.toLocaleString()} ₽
-                  </span>
-                  <span className="font-bold text-primary text-lg">
-                    {course.price.toLocaleString()} ₽
-                  </span>
-                </div>
-              </div>
-            </div>
 
-            {/* Email Input */}
-            <div className="space-y-2">
-              <Label htmlFor="email">Email для получения доступа</Label>
+          {/* Telegram Input */}
+          <div className="space-y-2">
+            <Label htmlFor="telegram">Ваш Telegram</Label>
+            <div className="relative">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+                @
+              </span>
               <Input
-                id="email"
-                type="email"
-                placeholder="your@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                id="telegram"
+                type="text"
+                placeholder="username"
+                value={telegram}
+                onChange={handleTelegramChange}
                 required
-                className="h-12"
+                className="h-12 pl-8"
               />
-              <p className="text-xs text-muted-foreground">
-                На этот адрес будет отправлен сертификат и ссылка на Telegram-канал с уроками
-              </p>
             </div>
-
-            {/* What you get */}
-            <div className="space-y-2">
-              <p className="text-sm font-medium">Вы получите:</p>
-              <ul className="space-y-1.5 text-sm text-muted-foreground">
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-600" />
-                  Доступ к закрытому Telegram-каналу
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-600" />
-                  Все видеоуроки курса
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-600" />
-                  Сертификат после прохождения
-                </li>
-                <li className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-600" />
-                  Поддержка от куратора
-                </li>
-              </ul>
-            </div>
-
-            {/* Submit Button */}
-            <Button
-              type="submit"
-              className="w-full btn-primary h-12"
-              disabled={isSubmitting || !email}
-            >
-              {isSubmitting ? (
-                "Обработка..."
-              ) : (
-                <>
-                  <Lock className="w-4 h-4 mr-2" />
-                  Оплатить {course.price.toLocaleString()} ₽
-                </>
-              )}
-            </Button>
-
-            <p className="text-xs text-center text-muted-foreground">
-              Нажимая кнопку, вы соглашаетесь с{" "}
-              <a href="/terms-of-service" className="underline hover:text-primary">
-                публичной офертой
-              </a>
+            <p className="text-xs text-muted-foreground">
+              Укажите ваш никнейм в Telegram для связи
             </p>
-          </form>
-        )}
+          </div>
+
+          {/* What you get */}
+          <div className="space-y-2">
+            <p className="text-sm font-medium">Вы получите:</p>
+            <ul className="space-y-1.5 text-sm text-muted-foreground">
+              <li className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                Доступ к закрытому Telegram-каналу
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                Все видеоуроки курса
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                Сертификат после прохождения
+              </li>
+              <li className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                Поддержка от куратора
+              </li>
+            </ul>
+          </div>
+
+          {/* Submit Button */}
+          <Button
+            type="submit"
+            className="w-full btn-primary h-12"
+            disabled={!telegram}
+          >
+            <Send className="w-4 h-4 mr-2" />
+            Записаться за {course.price.toLocaleString()} ₽
+          </Button>
+
+          <div className="bg-muted/50 rounded-lg p-3 flex items-start gap-2">
+            <Award className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+            <p className="text-xs text-muted-foreground">
+              После нажатия вы перейдёте в закрытый Telegram-канал курса, где получите инструкции по оплате и доступ к материалам
+            </p>
+          </div>
+
+          <p className="text-xs text-center text-muted-foreground">
+            Нажимая кнопку, вы соглашаетесь с{" "}
+            <a href="/terms-of-service" className="underline hover:text-primary">
+              публичной офертой
+            </a>
+          </p>
+        </form>
       </DialogContent>
     </Dialog>
   );

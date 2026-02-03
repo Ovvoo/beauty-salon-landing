@@ -2,9 +2,13 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import PaymentModal from "./PaymentModal";
-import courseClassic from "@/assets/course-classic.jpg";
-import courseVolume from "@/assets/course-volume.jpg";
-import courseBrows from "@/assets/course-brows.jpg";
+import course1 from "@/assets/course-1.jpg";
+import course2 from "@/assets/course-2.jpg";
+import course3 from "@/assets/course-3.jpg";
+import course4 from "@/assets/course-4.jpg";
+import course5 from "@/assets/course-5.jpg";
+import course6 from "@/assets/course-6.jpg";
+import course7 from "@/assets/course-7.jpg";
 
 interface Course {
   id: number;
@@ -16,76 +20,97 @@ interface Course {
   oldPrice: number;
   price: number;
   features: string[];
+  telegramLink: string;
 }
 
 const courses: Course[] = [
   {
     id: 1,
-    title: "Наращивание ресниц с нуля",
-    description: "Полный курс для начинающих мастеров. От теории до первых клиентов.",
-    image: courseClassic,
+    title: "Мастер по наращиванию ресниц",
+    description: "Станьте востребованным лешмейкером с нуля до первых клиентов за несколько дней. Гарантия качественного обучения и практического применения знаний — зарабатывайте больше, чем в офисе.",
+    image: course1,
     category: "Ресницы",
     level: "Начинающий",
     oldPrice: 15000,
     price: 4990,
     features: ["12 видеоуроков", "Чек-листы", "Сертификат"],
+    telegramLink: "https://t.me/+dPAUJ0m4mRdlMTcy",
   },
   {
     id: 2,
-    title: "Классика + 2D наращивание",
-    description: "Для мастеров, желающих освоить объёмные техники и увеличить чек.",
-    image: courseVolume,
+    title: "Объёмное наращивание ресниц",
+    description: "Освойте технику составления любых пучков за один день. Идеально для мастеров классики, желающих освоить 2D и 3D наращивание, поднять средний чек и расширить клиентскую базу.",
+    image: course2,
     category: "Ресницы",
     level: "Повышение квалификации",
     oldPrice: 20000,
     price: 6990,
     features: ["18 видеоуроков", "Разбор ошибок", "Сертификат"],
+    telegramLink: "https://t.me/+zm-FH44lwYQzZmNi",
   },
   {
     id: 3,
-    title: "Объёмы 3D-6D + мега",
-    description: "Продвинутые техники объёмного наращивания для опытных мастеров.",
-    image: courseVolume,
-    category: "Ресницы",
-    level: "Продвинутый",
-    oldPrice: 25000,
-    price: 8990,
-    features: ["24 видеоурока", "Схемы эффектов", "Сертификат"],
-  },
-  {
-    id: 4,
-    title: "Архитектура бровей с нуля",
-    description: "Научитесь создавать идеальную форму бровей для любого типа лица.",
-    image: courseBrows,
-    category: "Брови",
-    level: "Начинающий",
-    oldPrice: 12000,
-    price: 3990,
-    features: ["10 видеоуроков", "Схемы построения", "Сертификат"],
-  },
-  {
-    id: 5,
-    title: "Окрашивание бровей",
-    description: "Все техники окрашивания: хна, краска, долговременная укладка.",
-    image: courseBrows,
-    category: "Брови",
-    level: "Повышение квалификации",
-    oldPrice: 14000,
-    price: 4990,
-    features: ["14 видеоуроков", "Колористика", "Сертификат"],
-  },
-  {
-    id: 6,
     title: "Ламинирование ресниц",
-    description: "Популярная процедура для натурального эффекта. Быстрый старт.",
-    image: courseClassic,
+    description: "Быстрая процедура с высоким спросом — идеальный старт в профессии. Научитесь индивидуальному моделированию и созданию естественно подкрученных ресничек.",
+    image: course3,
     category: "Ресницы",
     level: "Начинающий",
     oldPrice: 9900,
     price: 2990,
     features: ["8 видеоуроков", "Список материалов", "Сертификат"],
+    telegramLink: "https://t.me/+-QbgHlt4epNjMGUy",
+  },
+  {
+    id: 4,
+    title: "Наращивание ресниц PRO",
+    description: "Курс повышения квалификации для опытных лешмейкеров. Выведите мастерство на новый уровень, увеличьте прайс на услуги и откройте путь к повышению в салоне.",
+    image: course4,
+    category: "Ресницы",
+    level: "Продвинутый",
+    oldPrice: 25000,
+    price: 8990,
+    features: ["24 видеоурока", "Схемы эффектов", "Сертификат"],
+    telegramLink: "https://t.me/+PuHWyKZ-_7NmMTli",
+  },
+  {
+    id: 5,
+    title: "Мокрый эффект",
+    description: "Освойте трендовую технику создания эффекта мокрых ресниц с помощью наращивания. Расширьте арсенал услуг и увеличьте поток клиентов благодаря востребованной методике.",
+    image: course5,
+    category: "Ресницы",
+    level: "Повышение квалификации",
+    oldPrice: 14000,
+    price: 4990,
+    features: ["10 видеоуроков", "Трендовые техники", "Сертификат"],
+    telegramLink: "https://t.me/+yQA-LV8MUpczMzVi",
+  },
+  {
+    id: 6,
+    title: "Американское наращивание",
+    description: "Техника супер-объёмного наращивания для мастеров с опытом. Пополните свой профессиональный арсенал уникальной методикой и выделитесь среди конкурентов.",
+    image: course6,
+    category: "Ресницы",
+    level: "Продвинутый",
+    oldPrice: 18000,
+    price: 7990,
+    features: ["14 видеоуроков", "Техника объёмов", "Сертификат"],
+    telegramLink: "https://t.me/+5FTZaPTYLf81ODBi",
+  },
+  {
+    id: 7,
+    title: "Ламинирование бровей",
+    description: "Популярная услуга долговременной укладки бровей. Освойте технику для себя или расширьте навыки практикующего мастера-бровиста новой востребованной процедурой.",
+    image: course7,
+    category: "Брови",
+    level: "Начинающий",
+    oldPrice: 12000,
+    price: 3990,
+    features: ["10 видеоуроков", "Схемы построения", "Сертификат"],
+    telegramLink: "https://t.me/+Vrbz-G4MEWBmZjI6",
   },
 ];
+
+const INITIAL_VISIBLE_COUNT = 6;
 
 const getLevelColor = (level: Course["level"]) => {
   switch (level) {
@@ -103,11 +128,15 @@ const getLevelColor = (level: Course["level"]) => {
 const CoursesSection = () => {
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
   const handleBuyClick = (course: Course) => {
     setSelectedCourse(course);
     setIsModalOpen(true);
   };
+
+  const visibleCourses = showAll ? courses : courses.slice(0, INITIAL_VISIBLE_COUNT);
+  const hasMoreCourses = courses.length > INITIAL_VISIBLE_COUNT;
 
   return (
     <section id="courses" className="section-padding bg-muted">
@@ -119,7 +148,7 @@ const CoursesSection = () => {
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
-          {courses.map((course, index) => {
+          {visibleCourses.map((course, index) => {
             const delayClasses = [
               "animate-delay-0",
               "animate-delay-50",
@@ -197,6 +226,18 @@ const CoursesSection = () => {
           );
           })}
         </div>
+
+        {hasMoreCourses && !showAll && (
+          <div className="flex justify-center mt-8">
+            <Button
+              onClick={() => setShowAll(true)}
+              variant="outline"
+              className="px-6 py-2"
+            >
+              Показать ещё
+            </Button>
+          </div>
+        )}
       </div>
 
       <PaymentModal
