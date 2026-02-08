@@ -10,7 +10,8 @@ const TelegramPostEmbed = ({ channel, postId }: TelegramPostEmbedProps) => {
     <iframe
       src={src}
       title={`Telegram пост ${channel}/${postId}`}
-      className="w-full border-0 min-h-[300px]"
+      className="w-full border-0 h-[450px] sm:h-[500px]"
+      scrolling="no"
       sandbox="allow-scripts allow-same-origin allow-popups"
     />
   );
