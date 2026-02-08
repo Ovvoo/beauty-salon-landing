@@ -14,15 +14,6 @@ export interface CourseRecord extends RecordModel {
   targetAudience: string[];
 }
 
-export interface ReviewRecord extends RecordModel {
-  name: string;
-  photo: string;
-  photoUrl: string;
-  text: string;
-  rating: number;
-  course: string;
-}
-
 export interface TelegramPostRecord extends RecordModel {
   channel: string;
   postId: number;
@@ -31,7 +22,6 @@ export interface TelegramPostRecord extends RecordModel {
 
 interface TypedPocketBase extends PocketBase {
   collection(idOrName: "courses"): RecordService<CourseRecord>;
-  collection(idOrName: "reviews"): RecordService<ReviewRecord>;
   collection(idOrName: "telegram_posts"): RecordService<TelegramPostRecord>;
   collection(idOrName: string): RecordService<RecordModel>;
 }

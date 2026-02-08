@@ -12,15 +12,6 @@ export interface Course {
   targetAudience: string[];
 }
 
-export interface Review {
-  id: string;
-  name: string;
-  photo: string;
-  text: string;
-  rating: number;
-  course: string;
-}
-
 export type TelegramPostType = "review" | "news";
 
 export interface TelegramPost {

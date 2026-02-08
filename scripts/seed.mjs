@@ -1,5 +1,5 @@
 /**
- * Seed PocketBase with courses and reviews from fallback data.
+ * Seed PocketBase with courses and telegram posts from fallback data.
  *
  * Usage:
  *   PB_EMAIL=admin@beauty-salon.local PB_PASSWORD=Admin123456! node scripts/seed.mjs
@@ -137,35 +137,17 @@ const courses = [
   },
 ];
 
-const reviews = [
-  {
-    name: "Анна Петрова",
-    photoUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face",
-    text: "Прошла курс по наращиванию с нуля. Всё очень понятно объяснено, уже через месяц начала принимать клиентов. Огромное спасибо за поддержку в чате!",
-    rating: 5,
-    course: "Наращивание с нуля",
-  },
-  {
-    name: "Мария Иванова",
-    photoUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
-    text: "Курс по бровям — лучшее вложение! Научилась строить форму под любой тип лица. Теперь клиенты записываются за неделю вперёд.",
-    rating: 5,
-    course: "Архитектура бровей",
-  },
-  {
-    name: "Екатерина Смирнова",
-    photoUrl: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100&h=100&fit=crop&crop=face",
-    text: "После курса объёмов мой средний чек вырос в 2 раза! Техники 3D-5D объяснены так, что получается с первого раза. Рекомендую!",
-    rating: 5,
-    course: "Объёмы 3D-6D",
-  },
-  {
-    name: "Ольга Козлова",
-    photoUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face",
-    text: "Долго искала качественный онлайн-курс. Здесь всё структурировано, есть обратная связь и закрытый чат. Сертификат пришёл сразу после оплаты.",
-    rating: 5,
-    course: "Классика + 2D",
-  },
+const TG_CHANNEL = "leralash22";
+
+const telegramPosts = [
+  { channel: TG_CHANNEL, postId: 45, type: "review" },
+  { channel: TG_CHANNEL, postId: 56, type: "review" },
+  { channel: TG_CHANNEL, postId: 12, type: "review" },
+  { channel: TG_CHANNEL, postId: 16, type: "review" },
+  { channel: TG_CHANNEL, postId: 31, type: "review" },
+  { channel: TG_CHANNEL, postId: 33, type: "news" },
+  { channel: TG_CHANNEL, postId: 51, type: "news" },
+  { channel: TG_CHANNEL, postId: 57, type: "news" },
 ];
 
 // ── Main ───────────────────────────────────────────────────────────
@@ -180,7 +162,6 @@ let coursesCreated = 0;
 let coursesSkipped = 0;
 
 for (const course of courses) {
-  // Idempotency: check if course with this title already exists
   const existing = await pb.collection("courses").getList(1, 1, {
     filter: `title = "${course.title.replace(/"/g, '\\"')}"`,
   });
@@ -203,7 +184,6 @@ for (const course of courses) {
     formData.append("telegramLink", course.telegramLink);
     formData.append("targetAudience", JSON.stringify(course.targetAudience));
 
-    // Upload image file
     const imagePath = path.join(ASSETS, course.imageFile);
     const imageBuffer = fs.readFileSync(imagePath);
     const imageBlob = new Blob([imageBuffer], { type: "image/jpeg" });
@@ -217,37 +197,31 @@ for (const course of courses) {
   }
 }
 
-// ── Seed reviews ───────────────────────────────────────────────────
-let reviewsCreated = 0;
-let reviewsSkipped = 0;
+// ── Seed telegram posts ─────────────────────────────────────────────
+let postsCreated = 0;
+let postsSkipped = 0;
 
-for (const review of reviews) {
-  const existing = await pb.collection("reviews").getList(1, 1, {
-    filter: `name = "${review.name.replace(/"/g, '\\"')}"`,
+for (const post of telegramPosts) {
+  const existing = await pb.collection("telegram_posts").getList(1, 1, {
+    filter: `channel = "${post.channel}" && postId = ${post.postId}`,
   });
 
   if (existing.totalItems > 0) {
-    console.log(`⏭️  Already exists: ${review.name}`);
-    reviewsSkipped++;
+    console.log(`⏭️  Already exists: ${post.channel}/${post.postId}`);
+    postsSkipped++;
     continue;
   }
 
   try {
-    await pb.collection("reviews").create({
-      name: review.name,
-      photoUrl: review.photoUrl,
-      text: review.text,
-      rating: review.rating,
-      course: review.course,
-    });
-    console.log(`✅ Review created: ${review.name}`);
-    reviewsCreated++;
+    await pb.collection("telegram_posts").create(post);
+    console.log(`✅ Post created: ${post.channel}/${post.postId} (${post.type})`);
+    postsCreated++;
   } catch (err) {
-    console.error(`❌ Failed to create: ${review.name} — ${err.message}`);
+    console.error(`❌ Failed to create: ${post.channel}/${post.postId} — ${err.message}`);
   }
 }
 
 // ── Summary ────────────────────────────────────────────────────────
 console.log(`\n--- Summary ---`);
 console.log(`Courses: ${coursesCreated} created, ${coursesSkipped} skipped`);
-console.log(`Reviews: ${reviewsCreated} created, ${reviewsSkipped} skipped`);
+console.log(`Telegram posts: ${postsCreated} created, ${postsSkipped} skipped`);

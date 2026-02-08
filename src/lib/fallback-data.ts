@@ -1,4 +1,4 @@
-import type { Course, Review, TelegramPost } from "@/lib/types";
+import type { Course, TelegramPost } from "@/lib/types";
 import course1 from "@/assets/course-1.jpg";
 import course2 from "@/assets/course-2.jpg";
 import course3 from "@/assets/course-3.jpg";
@@ -126,45 +126,6 @@ export const fallbackCourses: Course[] = [
       "Хочешь обучиться ламинированию бровей для себя",
       "Практикующий бровист и хочешь освоить новую технику",
     ],
-  },
-];
-
-export const fallbackReviews: Review[] = [
-  {
-    id: "fallback-r1",
-    name: "Анна Петрова",
-    photo:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face",
-    text: "Прошла курс по наращиванию с нуля. Всё очень понятно объяснено, уже через месяц начала принимать клиентов. Огромное спасибо за поддержку в чате!",
-    rating: 5,
-    course: "Наращивание с нуля",
-  },
-  {
-    id: "fallback-r2",
-    name: "Мария Иванова",
-    photo:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
-    text: "Курс по бровям — лучшее вложение! Научилась строить форму под любой тип лица. Теперь клиенты записываются за неделю вперёд.",
-    rating: 5,
-    course: "Архитектура бровей",
-  },
-  {
-    id: "fallback-r3",
-    name: "Екатерина Смирнова",
-    photo:
-      "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100&h=100&fit=crop&crop=face",
-    text: "После курса объёмов мой средний чек вырос в 2 раза! Техники 3D-5D объяснены так, что получается с первого раза. Рекомендую!",
-    rating: 5,
-    course: "Объёмы 3D-6D",
-  },
-  {
-    id: "fallback-r4",
-    name: "Ольга Козлова",
-    photo:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face",
-    text: "Долго искала качественный онлайн-курс. Здесь всё структурировано, есть обратная связь и закрытый чат. Сертификат пришёл сразу после оплаты.",
-    rating: 5,
-    course: "Классика + 2D",
   },
 ];
 
