@@ -176,8 +176,7 @@ export const fallbackTelegramPosts: TelegramPost[] = [
   { id: "fallback-tp3", channel: TG_CHANNEL, postId: 12, type: "review" },
   { id: "fallback-tp4", channel: TG_CHANNEL, postId: 16, type: "review" },
   { id: "fallback-tp5", channel: TG_CHANNEL, postId: 31, type: "review" },
-  { id: "fallback-tp6", channel: TG_CHANNEL, postId: 5, type: "news" },
-  { id: "fallback-tp7", channel: TG_CHANNEL, postId: 33, type: "news" },
-  { id: "fallback-tp8", channel: TG_CHANNEL, postId: 51, type: "news" },
-  { id: "fallback-tp9", channel: TG_CHANNEL, postId: 57, type: "news" },
+  { id: "fallback-tp6", channel: TG_CHANNEL, postId: 33, type: "news" },
+  { id: "fallback-tp7", channel: TG_CHANNEL, postId: 51, type: "news" },
+  { id: "fallback-tp8", channel: TG_CHANNEL, postId: 57, type: "news" },
 ];
