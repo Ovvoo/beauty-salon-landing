@@ -22,7 +22,7 @@ const BeautyFooter = () => {
             <h4 className="font-heading font-semibold text-base sm:text-lg mb-3 sm:mb-4">Связаться</h4>
             <div className="space-y-2 sm:space-y-3">
               <a
-                href="https://t.me/lash_brow_master"
+                href="https://t.me/leralash22"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 sm:gap-3 text-background/70 hover:text-gold transition-colors duration-200 text-sm"
@@ -31,7 +31,7 @@ const BeautyFooter = () => {
                 <span>Telegram</span>
               </a>
               <a
-                href="https://instagram.com/lash_brow_master"
+                href="https://www.instagram.com/_new.style.barnaul_"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 sm:gap-3 text-background/70 hover:text-gold transition-colors duration-200 text-sm"

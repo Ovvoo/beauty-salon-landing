@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import PaymentModal from "./PaymentModal";
+import PriceDisplay from "./PriceDisplay";
 import course1 from "@/assets/course-1.jpg";
 import course2 from "@/assets/course-2.jpg";
 import course3 from "@/assets/course-3.jpg";
@@ -33,7 +34,7 @@ const courses: Course[] = [
     category: "Ресницы",
     level: "Начинающий",
     oldPrice: 5000,
-    price: 99,
+    price: 990,
     features: ["12 видеоуроков", "Чек-листы", "Сертификат"],
     telegramLink: "https://t.me/+dPAUJ0m4mRdlMTcy",
     targetAudience: [
@@ -49,7 +50,7 @@ const courses: Course[] = [
     category: "Ресницы",
     level: "Повышение квалификации",
     oldPrice: 5000,
-    price: 99,
+    price: 990,
     features: ["18 видеоуроков", "Разбор ошибок", "Сертификат"],
     telegramLink: "https://t.me/+zm-FH44lwYQzZmNi",
     targetAudience: [
@@ -65,7 +66,7 @@ const courses: Course[] = [
     category: "Ресницы",
     level: "Начинающий",
     oldPrice: 5000,
-    price: 99,
+    price: 990,
     features: ["8 видеоуроков", "Список материалов", "Сертификат"],
     telegramLink: "https://t.me/+-QbgHlt4epNjMGUy",
     targetAudience: [
@@ -81,7 +82,7 @@ const courses: Course[] = [
     category: "Ресницы",
     level: "Продвинутый",
     oldPrice: 5000,
-    price: 99,
+    price: 990,
     features: ["24 видеоурока", "Схемы эффектов", "Сертификат"],
     telegramLink: "https://t.me/+PuHWyKZ-_7NmMTli",
     targetAudience: [
@@ -97,7 +98,7 @@ const courses: Course[] = [
     category: "Ресницы",
     level: "Повышение квалификации",
     oldPrice: 5000,
-    price: 99,
+    price: 990,
     features: ["10 видеоуроков", "Трендовые техники", "Сертификат"],
     telegramLink: "https://t.me/+yQA-LV8MUpczMzVi",
     targetAudience: [
@@ -113,7 +114,7 @@ const courses: Course[] = [
     category: "Ресницы",
     level: "Продвинутый",
     oldPrice: 5000,
-    price: 99,
+    price: 990,
     features: ["14 видеоуроков", "Техника объёмов", "Сертификат"],
     telegramLink: "https://t.me/+5FTZaPTYLf81ODBi",
     targetAudience: [
@@ -129,7 +130,7 @@ const courses: Course[] = [
     category: "Брови",
     level: "Начинающий",
     oldPrice: 5000,
-    price: 99,
+    price: 990,
     features: ["10 видеоуроков", "Схемы построения", "Сертификат"],
     telegramLink: "https://t.me/+Vrbz-G4MEWBmZjI6",
     targetAudience: [
@@ -235,14 +236,7 @@ const CoursesSection = () => {
 
                 {/* Price & CTA */}
                 <div className="flex items-center justify-between mt-auto pt-3 sm:pt-4 border-t border-border gap-2">
-                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
-                    <span className="line-through text-muted-foreground text-xs sm:text-sm">
-                      {course.oldPrice.toLocaleString()} ₽
-                    </span>
-                    <span className="font-bold text-primary text-lg sm:text-xl">
-                      {course.price.toLocaleString()} ₽
-                    </span>
-                  </div>
+                  <PriceDisplay price={course.price} oldPrice={course.oldPrice} />
                   <Button
                     onClick={() => handleBuyClick(course)}
                     className="btn-primary text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 shrink-0"

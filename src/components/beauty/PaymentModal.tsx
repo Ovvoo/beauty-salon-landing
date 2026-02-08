@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CheckCircle, Send } from "lucide-react";
+import PriceDisplay from "./PriceDisplay";
 
 interface Course {
   id: number;
@@ -56,14 +57,7 @@ const PaymentModal = ({ course, open, onOpenChange }: PaymentModalProps) => {
 
         <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
           {/* Price */}
-          <div className="flex items-baseline gap-2">
-            <span className="line-through text-muted-foreground text-xs sm:text-sm">
-              {course.oldPrice.toLocaleString()} ₽
-            </span>
-            <span className="font-bold text-primary text-xl sm:text-2xl">
-              {course.price.toLocaleString()} ₽
-            </span>
-          </div>
+          <PriceDisplay price={course.price} oldPrice={course.oldPrice} variant="lg" />
 
           {/* Target Audience */}
           <div className="bg-muted/50 rounded-lg p-2.5 sm:p-3">
