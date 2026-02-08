@@ -33,7 +33,7 @@ const BeautyHeader = () => {
           {/* Logo */}
           <a href="#" className="flex items-center">
             <span className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-primary">
-              LASH<span className="text-gold">&</span>BROW
+              BEAUTY<span className="text-gold">START</span>
             </span>
           </a>
 

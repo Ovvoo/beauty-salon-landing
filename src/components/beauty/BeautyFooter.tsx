@@ -9,7 +9,7 @@ const BeautyFooter = () => {
           <div className="sm:col-span-2 md:col-span-1">
             <a href="#" className="inline-block mb-3 sm:mb-4">
               <span className="font-heading text-xl sm:text-2xl font-bold text-background">
-                LASH<span className="text-gold">&</span>BROW
+                BEAUTY<span className="text-gold">START</span>
               </span>
             </a>
             <p className="text-background/70 text-xs sm:text-sm leading-relaxed">
