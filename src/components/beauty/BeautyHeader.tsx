@@ -18,6 +18,7 @@ const BeautyHeader = () => {
     { href: "#courses", label: "Курсы" },
     { href: "#benefits", label: "Преимущества" },
     { href: "#reviews", label: "Отзывы" },
+    { href: "#news", label: "Новости" },
     { href: "#faq", label: "Вопросы" },
   ];
 

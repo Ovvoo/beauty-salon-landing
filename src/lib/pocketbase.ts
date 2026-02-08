@@ -1,4 +1,5 @@
 import PocketBase, { RecordService, RecordModel } from "pocketbase";
+import type { TelegramPostType } from "@/lib/types";
 
 export interface CourseRecord extends RecordModel {
   title: string;
@@ -22,9 +23,16 @@ export interface ReviewRecord extends RecordModel {
   course: string;
 }
 
+export interface TelegramPostRecord extends RecordModel {
+  channel: string;
+  postId: number;
+  type: TelegramPostType;
+}
+
 interface TypedPocketBase extends PocketBase {
   collection(idOrName: "courses"): RecordService<CourseRecord>;
   collection(idOrName: "reviews"): RecordService<ReviewRecord>;
+  collection(idOrName: "telegram_posts"): RecordService<TelegramPostRecord>;
   collection(idOrName: string): RecordService<RecordModel>;
 }
 

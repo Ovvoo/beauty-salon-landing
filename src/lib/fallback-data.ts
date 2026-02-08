@@ -1,4 +1,4 @@
-import type { Course, Review } from "@/lib/types";
+import type { Course, Review, TelegramPost } from "@/lib/types";
 import course1 from "@/assets/course-1.jpg";
 import course2 from "@/assets/course-2.jpg";
 import course3 from "@/assets/course-3.jpg";
@@ -166,4 +166,18 @@ export const fallbackReviews: Review[] = [
     rating: 5,
     course: "Классика + 2D",
   },
+];
+
+const TG_CHANNEL = "leralash22";
+
+export const fallbackTelegramPosts: TelegramPost[] = [
+  { id: "fallback-tp1", channel: TG_CHANNEL, postId: 45, type: "review" },
+  { id: "fallback-tp2", channel: TG_CHANNEL, postId: 56, type: "review" },
+  { id: "fallback-tp3", channel: TG_CHANNEL, postId: 12, type: "review" },
+  { id: "fallback-tp4", channel: TG_CHANNEL, postId: 16, type: "review" },
+  { id: "fallback-tp5", channel: TG_CHANNEL, postId: 31, type: "review" },
+  { id: "fallback-tp6", channel: TG_CHANNEL, postId: 5, type: "news" },
+  { id: "fallback-tp7", channel: TG_CHANNEL, postId: 33, type: "news" },
+  { id: "fallback-tp8", channel: TG_CHANNEL, postId: 51, type: "news" },
+  { id: "fallback-tp9", channel: TG_CHANNEL, postId: 57, type: "news" },
 ];

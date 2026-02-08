@@ -20,3 +20,12 @@ export interface Review {
   rating: number;
   course: string;
 }
+
+export type TelegramPostType = "review" | "news";
+
+export interface TelegramPost {
+  id: string;
+  channel: string;
+  postId: number;
+  type: TelegramPostType;
+}
