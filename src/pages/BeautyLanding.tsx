@@ -24,7 +24,6 @@ const BeautyLanding = () => {
           title="Новости"
           sectionId="news"
           bgClassName="bg-background"
-          itemBasis="basis-full sm:basis-1/2 lg:basis-1/3"
           showChannelLink
         />
         <FAQSection />
