@@ -9,9 +9,9 @@ export interface CourseRecord extends RecordModel {
   level: "Начинающий" | "Повышение квалификации" | "Продвинутый";
   price: number;
   oldPrice?: number;
-  features: string[];
+  features: string;
   telegramLink: string;
-  targetAudience: string[];
+  targetAudience: string;
 }
 
 export interface TelegramPostRecord extends RecordModel {

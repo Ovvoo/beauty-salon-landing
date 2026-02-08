@@ -180,9 +180,9 @@ for (const course of courses) {
     formData.append("level", course.level);
     formData.append("price", String(course.price));
     formData.append("oldPrice", String(course.oldPrice));
-    formData.append("features", JSON.stringify(course.features));
+    formData.append("features", course.features.join("\n"));
     formData.append("telegramLink", course.telegramLink);
-    formData.append("targetAudience", JSON.stringify(course.targetAudience));
+    formData.append("targetAudience", course.targetAudience.join("\n"));
 
     const imagePath = path.join(ASSETS, course.imageFile);
     const imageBuffer = fs.readFileSync(imagePath);

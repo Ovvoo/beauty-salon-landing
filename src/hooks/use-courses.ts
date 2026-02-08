@@ -18,9 +18,9 @@ async function fetchCourses(): Promise<Course[]> {
       level: r.level,
       price: r.price,
       oldPrice: r.oldPrice,
-      features: r.features,
+      features: r.features.split("\n").filter(Boolean),
       telegramLink: r.telegramLink,
-      targetAudience: r.targetAudience,
+      targetAudience: r.targetAudience.split("\n").filter(Boolean),
     }));
   } catch (error) {
     console.error("[useCourses] PocketBase fetch failed:", error);
