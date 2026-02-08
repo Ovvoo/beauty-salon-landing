@@ -31,7 +31,7 @@ async function fetchCourses(): Promise<Course[]> {
 export const coursesQueryOptions = queryOptions({
   queryKey: ["courses"],
   queryFn: fetchCourses,
-  staleTime: 5 * 60 * 1000,
+  staleTime: 30 * 1000,
   initialData: fallbackCourses,
   initialDataUpdatedAt: 0,
 });

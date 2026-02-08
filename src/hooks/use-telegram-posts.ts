@@ -24,7 +24,7 @@ function telegramPostsQueryOptions(type: TelegramPostType) {
   return queryOptions({
     queryKey: ["telegram_posts", type],
     queryFn: () => fetchTelegramPosts(type),
-    staleTime: 5 * 60 * 1000,
+    staleTime: 30 * 1000,
     initialData: fallback,
     initialDataUpdatedAt: 0,
   });
