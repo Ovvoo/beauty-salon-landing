@@ -1,136 +1,114 @@
 import { useEffect } from "react";
-import Header from "../components/header/Header";
-import Footer from "../components/footer/Footer";
+import BeautyHeader from "../components/beauty/BeautyHeader";
+import BeautyFooter from "../components/beauty/BeautyFooter";
 
 const PrivacyPolicy = () => {
   useEffect(() => {
-    document.title = "Privacy Policy - Linea Jewelry";
+    document.title = "Политика конфиденциальности — BeautyStart";
   }, []);
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
-      
-      <main className="pt-6">
-        <div className="max-w-4xl mx-auto px-6 py-12">
-          <header className="mb-12 text-center">
-            <h1 className="text-4xl font-light text-foreground mb-4">Privacy Policy</h1>
-            <p className="text-muted-foreground">Last updated: January 15, 2024</p>
+      <BeautyHeader />
+
+      <main className="pt-20 sm:pt-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+          <header className="mb-8 sm:mb-12 text-center">
+            <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">
+              Политика конфиденциальности
+            </h1>
+            <p className="text-muted-foreground text-sm">
+              Дата последнего обновления: 1 февраля 2026 г.
+            </p>
           </header>
 
-          <div className="prose prose-lg max-w-none space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             <section>
-              <h2 className="text-2xl font-light text-foreground mb-4">Introduction</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                At Linea Jewelry Inc. ("we," "our," or "us"), we respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website, make a purchase, or interact with our services.
+              <h2 className="font-heading text-lg sm:text-xl font-semibold text-foreground mb-3">
+                1. Общие положения
+              </h2>
+              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                BeautyStart.ru (далее — «Сайт») уважает вашу конфиденциальность и обязуется защищать персональные данные, которые вы предоставляете при использовании Сайта. Настоящая Политика описывает, какие данные мы собираем, как их используем и защищаем.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-light text-foreground mb-4">Information We Collect</h2>
-              <div className="space-y-4">
-                <div>
-                  <h3 className="text-xl font-light text-foreground mb-2">Personal Information</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    We may collect personal information that you provide directly to us, including:
-                  </p>
-                  <ul className="list-disc list-inside text-muted-foreground mt-2 space-y-1">
-                    <li>Name, email address, and contact information</li>
-                    <li>Billing and shipping addresses</li>
-                    <li>Payment information (processed securely through third-party providers)</li>
-                    <li>Account preferences and communication settings</li>
-                  </ul>
-                </div>
-                
-                <div>
-                  <h3 className="text-xl font-light text-foreground mb-2">Usage Information</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    We automatically collect certain information about your device and usage patterns, including IP address, browser type, pages visited, and interaction data to improve our services and user experience.
-                  </p>
-                </div>
-              </div>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-light text-foreground mb-4">How We Use Your Information</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                We use the information we collect for various purposes, including:
+              <h2 className="font-heading text-lg sm:text-xl font-semibold text-foreground mb-3">
+                2. Собираемые данные
+              </h2>
+              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-3">
+                При оформлении заказа и использовании Сайта мы можем собирать:
               </p>
-              <ul className="list-disc list-inside text-muted-foreground space-y-1">
-                <li>Processing and fulfilling your orders</li>
-                <li>Providing customer support and responding to inquiries</li>
-                <li>Sending promotional communications (with your consent)</li>
-                <li>Improving our website functionality and user experience</li>
-                <li>Preventing fraud and ensuring security</li>
-                <li>Complying with legal obligations</li>
+              <ul className="list-disc list-inside text-muted-foreground text-sm sm:text-base space-y-1">
+                <li>Имя и контактные данные (email, Telegram)</li>
+                <li>Данные об оплате (обрабатываются через защищённые платёжные сервисы)</li>
+                <li>Техническую информацию (IP-адрес, тип браузера, страницы посещений)</li>
               </ul>
             </section>
 
             <section>
-              <h2 className="text-2xl font-light text-foreground mb-4">Information Sharing and Disclosure</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                We do not sell, trade, or rent your personal information to third parties. We may share your information only in the following circumstances:
-              </p>
-              <ul className="list-disc list-inside text-muted-foreground space-y-1">
-                <li>With service providers who assist us in operating our business</li>
-                <li>When required by law or to protect our rights</li>
-                <li>In connection with a business transaction (merger, acquisition, etc.)</li>
-                <li>With your explicit consent</li>
+              <h2 className="font-heading text-lg sm:text-xl font-semibold text-foreground mb-3">
+                3. Цели обработки данных
+              </h2>
+              <ul className="list-disc list-inside text-muted-foreground text-sm sm:text-base space-y-1">
+                <li>Предоставление доступа к оплаченным курсам</li>
+                <li>Связь с вами по вопросам обучения</li>
+                <li>Улучшение качества Сайта и курсов</li>
+                <li>Исполнение требований законодательства РФ</li>
               </ul>
             </section>
 
             <section>
-              <h2 className="text-2xl font-light text-foreground mb-4">Data Security</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet or electronic storage is 100% secure.
+              <h2 className="font-heading text-lg sm:text-xl font-semibold text-foreground mb-3">
+                4. Защита данных
+              </h2>
+              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                Мы принимаем технические и организационные меры для защиты ваших данных от несанкционированного доступа, изменения или уничтожения. Платёжные данные обрабатываются сертифицированными платёжными системами и не хранятся на наших серверах.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-light text-foreground mb-4">Your Rights and Choices</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                Depending on your location, you may have certain rights regarding your personal information:
-              </p>
-              <ul className="list-disc list-inside text-muted-foreground space-y-1">
-                <li>Access to your personal information</li>
-                <li>Correction of inaccurate or incomplete information</li>
-                <li>Deletion of your personal information</li>
-                <li>Objection to or restriction of processing</li>
-                <li>Data portability</li>
-                <li>Withdrawal of consent (where applicable)</li>
-              </ul>
-            </section>
-
-            <section>
-              <h2 className="text-2xl font-light text-foreground mb-4">Cookies and Tracking</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                We use cookies and similar tracking technologies to enhance your browsing experience, analyze website traffic, and personalize content. You can control cookie settings through your browser preferences, though this may affect website functionality.
+              <h2 className="font-heading text-lg sm:text-xl font-semibold text-foreground mb-3">
+                5. Передача данных третьим лицам
+              </h2>
+              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                Мы не продаём и не передаём ваши персональные данные третьим лицам, за исключением случаев, предусмотренных законодательством РФ, а также для обработки платежей через сертифицированные платёжные сервисы.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-light text-foreground mb-4">Changes to This Policy</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                We may update this Privacy Policy from time to time. We will notify you of any significant changes by posting the new policy on our website and updating the "Last updated" date above.
+              <h2 className="font-heading text-lg sm:text-xl font-semibold text-foreground mb-3">
+                6. Файлы cookie
+              </h2>
+              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                Сайт использует файлы cookie для улучшения пользовательского опыта и анализа посещаемости. Вы можете отключить cookie в настройках браузера, однако это может повлиять на функциональность Сайта.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-light text-foreground mb-4">Contact Us</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                If you have any questions about this Privacy Policy or our privacy practices, please contact us at:
+              <h2 className="font-heading text-lg sm:text-xl font-semibold text-foreground mb-3">
+                7. Ваши права
+              </h2>
+              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                Вы вправе запросить информацию о хранимых персональных данных, потребовать их исправления или удаления, обратившись по контактам ниже.
               </p>
-              <div className="mt-4 text-muted-foreground">
-                <p>Email: privacy@lineajewelry.com</p>
-                <p>Phone: +1 (212) 555-0123</p>
-                <p>Address: 123 Madison Avenue, New York, NY 10016</p>
+            </section>
+
+            <section>
+              <h2 className="font-heading text-lg sm:text-xl font-semibold text-foreground mb-3">
+                8. Контактная информация
+              </h2>
+              <div className="text-muted-foreground text-sm sm:text-base space-y-1">
+                <p>Сайт: BeautyStart.ru</p>
+                <p>Email: info@beautystart.ru</p>
+                <p>Telegram: @Education_La</p>
               </div>
             </section>
           </div>
         </div>
       </main>
-      
-      <Footer />
+
+      <BeautyFooter />
     </div>
   );
 };

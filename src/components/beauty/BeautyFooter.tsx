@@ -40,11 +40,11 @@ const BeautyFooter = () => {
                 <span>Instagram</span>
               </a>
               <a
-                href="mailto:info@lashbrow.ru"
+                href="mailto:info@beautystart.ru"
                 className="flex items-center gap-2 sm:gap-3 text-background/70 hover:text-gold transition-colors duration-200 text-sm"
               >
                 <Mail className="w-4 sm:w-5 h-4 sm:h-5" />
-                <span>info@lashbrow.ru</span>
+                <span>info@beautystart.ru</span>
               </a>
             </div>
           </div>
