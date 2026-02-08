@@ -5,9 +5,7 @@ import type { Course } from "@/lib/types";
 
 async function fetchCourses(): Promise<Course[]> {
   try {
-    const records = await pb.collection("courses").getFullList({
-      sort: "created",
-    });
+    const records = await pb.collection("courses").getFullList();
 
     return records.map((r) => ({
       id: r.id,
@@ -35,6 +33,7 @@ export const coursesQueryOptions = queryOptions({
   queryFn: fetchCourses,
   staleTime: 5 * 60 * 1000,
   initialData: fallbackCourses,
+  initialDataUpdatedAt: 0,
 });
 
 export function useCourses() {

@@ -5,9 +5,7 @@ import type { Review } from "@/lib/types";
 
 async function fetchReviews(): Promise<Review[]> {
   try {
-    const records = await pb.collection("reviews").getFullList({
-      sort: "created",
-    });
+    const records = await pb.collection("reviews").getFullList();
 
     return records.map((r) => {
       let photo = "";
@@ -37,6 +35,7 @@ export const reviewsQueryOptions = queryOptions({
   queryFn: fetchReviews,
   staleTime: 5 * 60 * 1000,
   initialData: fallbackReviews,
+  initialDataUpdatedAt: 0,
 });
 
 export function useReviews() {
