@@ -5,7 +5,9 @@ import type { Course } from "@/lib/types";
 
 async function fetchCourses(): Promise<Course[]> {
   try {
-    const records = await pb.collection("courses").getFullList();
+    const records = await pb.collection("courses").getFullList({
+      sort: "sortOrder",
+    });
 
     return records.map((r) => ({
       id: r.id,
@@ -18,9 +20,9 @@ async function fetchCourses(): Promise<Course[]> {
       level: r.level,
       price: r.price,
       oldPrice: r.oldPrice,
-      features: r.features.split("\n").filter(Boolean),
-      telegramLink: r.telegramLink,
-      targetAudience: r.targetAudience.split("\n").filter(Boolean),
+      features: (r.features || "").split(/\r?\n/).filter(Boolean),
+      telegramLink: r.telegramLink || "",
+      targetAudience: (r.targetAudience || "").split(/\r?\n/).filter(Boolean),
     }));
   } catch (error) {
     console.error("[useCourses] PocketBase fetch failed:", error);

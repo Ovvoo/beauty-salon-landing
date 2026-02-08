@@ -44,6 +44,7 @@ const courses = [
       "Новичок и хочешь получить новую востребованную профессию",
       "Начинающий мастер, который не чувствует себя уверенным на практике",
     ],
+    sortOrder: 10,
   },
   {
     title: "Объёмное наращивание ресниц",
@@ -59,6 +60,7 @@ const courses = [
       "Уже наращиваешь классику и хочешь освоить 2D и 3D",
       "Хочешь поднять средний чек и расширить клиентскую базу",
     ],
+    sortOrder: 20,
   },
   {
     title: "Ламинирование ресниц",
@@ -74,6 +76,7 @@ const courses = [
       "Хочешь освоить быструю процедуру с высоким спросом",
       "Хочешь научиться индивидуальному моделированию ресничек",
     ],
+    sortOrder: 30,
   },
   {
     title: "Наращивание ресниц PRO",
@@ -89,6 +92,7 @@ const courses = [
       "Хочешь повысить квалификацию мастера по наращиванию",
       "Хочешь увеличить прайс или получить повышение в салоне",
     ],
+    sortOrder: 40,
   },
   {
     title: "Мокрый эффект",
@@ -104,6 +108,7 @@ const courses = [
       "Хочешь освоить трендовую технику мокрых ресниц",
       "Желаешь принимать больше клиентов и увеличить прайс",
     ],
+    sortOrder: 50,
   },
   {
     title: "Американское наращивание",
@@ -119,6 +124,7 @@ const courses = [
       "Имеешь опыт объёмного наращивания",
       "Хочешь пополнить арсенал уникальной техникой",
     ],
+    sortOrder: 60,
   },
   {
     title: "Ламинирование бровей",
@@ -134,6 +140,7 @@ const courses = [
       "Хочешь обучиться ламинированию бровей для себя",
       "Практикующий бровист и хочешь освоить новую технику",
     ],
+    sortOrder: 70,
   },
 ];
 
@@ -183,6 +190,7 @@ for (const course of courses) {
     formData.append("features", course.features.join("\n"));
     formData.append("telegramLink", course.telegramLink);
     formData.append("targetAudience", course.targetAudience.join("\n"));
+    formData.append("sortOrder", String(course.sortOrder));
 
     const imagePath = path.join(ASSETS, course.imageFile);
     const imageBuffer = fs.readFileSync(imagePath);

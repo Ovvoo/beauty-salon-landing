@@ -12,6 +12,7 @@ export interface CourseRecord extends RecordModel {
   features: string;
   telegramLink: string;
   targetAudience: string;
+  sortOrder: number;
 }
 
 export interface TelegramPostRecord extends RecordModel {
