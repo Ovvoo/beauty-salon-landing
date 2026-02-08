@@ -22,7 +22,7 @@ const BeautyFooter = () => {
             <h4 className="font-heading font-semibold text-base sm:text-lg mb-3 sm:mb-4">Связаться</h4>
             <div className="space-y-2 sm:space-y-3">
               <a
-                href="https://t.me/leralash22"
+                href="https://t.me/Education_La"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 sm:gap-3 text-background/70 hover:text-gold transition-colors duration-200 text-sm"
@@ -72,7 +72,7 @@ const BeautyFooter = () => {
         {/* Copyright */}
         <div className="mt-6 sm:mt-8 md:mt-10 pt-6 sm:pt-8 border-t border-background/20 text-center">
           <p className="text-background/50 text-xs sm:text-sm">
-            © {new Date().getFullYear()} Lash&Brow. Все права защищены.
+            © {new Date().getFullYear()} BeautyStart. Все права защищены.
           </p>
         </div>
       </div>
