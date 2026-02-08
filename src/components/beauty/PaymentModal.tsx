@@ -10,15 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CheckCircle, Send } from "lucide-react";
 import PriceDisplay from "./PriceDisplay";
-
-interface Course {
-  id: number;
-  title: string;
-  price: number;
-  oldPrice: number;
-  telegramLink: string;
-  targetAudience: string[];
-}
+import type { Course } from "@/lib/types";
 
 interface PaymentModalProps {
   course: Course | null;

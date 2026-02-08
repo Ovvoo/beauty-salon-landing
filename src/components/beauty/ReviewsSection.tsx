@@ -7,43 +7,10 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { Star } from "lucide-react";
-
-const reviews = [
-  {
-    id: 1,
-    name: "Анна Петрова",
-    photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face",
-    text: "Прошла курс по наращиванию с нуля. Всё очень понятно объяснено, уже через месяц начала принимать клиентов. Огромное спасибо за поддержку в чате!",
-    rating: 5,
-    course: "Наращивание с нуля",
-  },
-  {
-    id: 2,
-    name: "Мария Иванова",
-    photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
-    text: "Курс по бровям — лучшее вложение! Научилась строить форму под любой тип лица. Теперь клиенты записываются за неделю вперёд.",
-    rating: 5,
-    course: "Архитектура бровей",
-  },
-  {
-    id: 3,
-    name: "Екатерина Смирнова",
-    photo: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100&h=100&fit=crop&crop=face",
-    text: "После курса объёмов мой средний чек вырос в 2 раза! Техники 3D-5D объяснены так, что получается с первого раза. Рекомендую!",
-    rating: 5,
-    course: "Объёмы 3D-6D",
-  },
-  {
-    id: 4,
-    name: "Ольга Козлова",
-    photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face",
-    text: "Долго искала качественный онлайн-курс. Здесь всё структурировано, есть обратная связь и закрытый чат. Сертификат пришёл сразу после оплаты.",
-    rating: 5,
-    course: "Классика + 2D",
-  },
-];
+import { useReviews } from "@/hooks/use-reviews";
 
 const ReviewsSection = () => {
+  const { data: reviews } = useReviews();
   return (
     <section id="reviews" className="section-padding bg-muted">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">

@@ -1,6 +1,6 @@
 interface PriceDisplayProps {
   price: number;
-  oldPrice: number;
+  oldPrice?: number;
   variant?: "sm" | "lg";
 }
 
@@ -22,9 +22,11 @@ const PriceDisplay = ({ price, oldPrice, variant = "sm" }: PriceDisplayProps) =>
 
   return (
     <div className={styles.container}>
-      <span className={styles.old}>
-        {oldPrice.toLocaleString()} ₽
-      </span>
+      {oldPrice && oldPrice > price && (
+        <span className={styles.old}>
+          {oldPrice.toLocaleString()} ₽
+        </span>
+      )}
       <span className={styles.current}>
         {price.toLocaleString()} ₽
       </span>
