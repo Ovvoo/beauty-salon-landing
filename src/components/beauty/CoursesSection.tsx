@@ -11,9 +11,9 @@ const INITIAL_VISIBLE_COUNT = 6;
 const getLevelColor = (level: Course["level"]) => {
   switch (level) {
     case "Начинающий":
-      return "bg-green-500";
+      return "bg-success";
     case "Повышение квалификации":
-      return "bg-blue-500";
+      return "bg-info";
     case "Продвинутый":
       return "bg-primary";
     default:
@@ -22,7 +22,8 @@ const getLevelColor = (level: Course["level"]) => {
 };
 
 const CoursesSection = () => {
-  const { data: courses } = useCourses();
+  const { data: courses, dataUpdatedAt, isError, isFetching } = useCourses();
+  const isUsingFallback = dataUpdatedAt === 0;
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showAll, setShowAll] = useState(false);
@@ -43,6 +44,16 @@ const CoursesSection = () => {
           Выберите курс, который подходит вашему уровню. После оплаты вы получите
           доступ к закрытому Telegram-каналу с уроками и сертификат.
         </p>
+
+        {import.meta.env.DEV && (isError || isUsingFallback) && (
+          <div className={`text-center text-xs mb-4 px-3 py-1.5 rounded mx-auto w-fit ${isError ? "bg-destructive/10 text-destructive" : "bg-muted text-muted-foreground"}`}>
+            {isError
+              ? "PocketBase недоступен — показаны локальные данные"
+              : isFetching
+                ? "Загрузка курсов из PocketBase..."
+                : "Показаны локальные данные (PocketBase не отвечал)"}
+          </div>
+        )}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
           {visibleCourses.map((course, index) => {

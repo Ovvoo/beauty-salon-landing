@@ -57,7 +57,7 @@ const PaymentModal = ({ course, open, onOpenChange }: PaymentModalProps) => {
             <ul className="space-y-1">
               {course.targetAudience.map((item, index) => (
                 <li key={index} className="flex items-start gap-1.5 text-xs text-muted-foreground">
-                  <CheckCircle className="w-3.5 h-3.5 text-green-600 mt-0.5 shrink-0" />
+                  <CheckCircle className="w-3.5 h-3.5 text-success mt-0.5 shrink-0" />
                   <span>{item}</span>
                 </li>
               ))}

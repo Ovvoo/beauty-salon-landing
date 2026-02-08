@@ -4,30 +4,27 @@ import { fallbackCourses } from "@/lib/fallback-data";
 import type { Course } from "@/lib/types";
 
 async function fetchCourses(): Promise<Course[]> {
-  try {
-    const records = await pb.collection("courses").getFullList({
-      sort: "sortOrder",
-    });
+  const records = await pb.collection("courses").getFullList({
+    sort: "sortOrder",
+  });
 
-    return records.map((r) => ({
-      id: r.id,
-      title: r.title,
-      description: r.description,
-      image: r.image
-        ? pb.files.getURL(r, r.image, { thumb: "600x400" })
-        : "",
-      category: r.category,
-      level: r.level,
-      price: r.price,
-      oldPrice: r.oldPrice,
-      features: (r.features || "").split(/\r?\n/).filter(Boolean),
-      telegramLink: r.telegramLink || "",
-      targetAudience: (r.targetAudience || "").split(/\r?\n/).filter(Boolean),
-    }));
-  } catch (error) {
-    console.error("[useCourses] PocketBase fetch failed:", error);
-    throw error;
-  }
+  console.info(`[useCourses] Fetched ${records.length} courses from PocketBase`);
+
+  return records.map((r) => ({
+    id: r.id,
+    title: r.title,
+    description: r.description,
+    image: r.image
+      ? pb.files.getURL(r, r.image, { thumb: "600x400" })
+      : "",
+    category: r.category,
+    level: r.level,
+    price: r.price,
+    oldPrice: r.oldPrice,
+    features: (r.features || "").split(/\r?\n/).filter(Boolean),
+    telegramLink: r.telegramLink || "",
+    targetAudience: (r.targetAudience || "").split(/\r?\n/).filter(Boolean),
+  }));
 }
 
 export const coursesQueryOptions = queryOptions({

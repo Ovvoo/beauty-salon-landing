@@ -44,9 +44,11 @@
     --input: 0 0% 90%;
     --ring: 355 44% 32%;
     
-    /* Destructive */
+    /* Semantic */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
+    --success: 142 60% 40%;
+    --info: 210 60% 50%;
     
     --radius: 0.5rem;
 

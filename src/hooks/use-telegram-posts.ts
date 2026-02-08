@@ -3,12 +3,20 @@ import pb from "@/lib/pocketbase";
 import { fallbackTelegramPosts } from "@/lib/fallback-data";
 import type { TelegramPost, TelegramPostType } from "@/lib/types";
 
+const ALLOWED_TYPES: readonly TelegramPostType[] = ["review", "news"];
+
 async function fetchTelegramPosts(
   type: TelegramPostType,
 ): Promise<TelegramPost[]> {
+  if (!ALLOWED_TYPES.includes(type)) {
+    throw new Error(`Invalid telegram post type: ${type}`);
+  }
+
   const records = await pb.collection("telegram_posts").getFullList({
     filter: `type="${type}"`,
   });
+
+  console.info(`[useTelegramPosts] Fetched ${records.length} ${type} posts from PocketBase`);
 
   return records.map((r) => ({
     id: r.id,
