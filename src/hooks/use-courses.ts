@@ -3,6 +3,8 @@ import pb from "@/lib/pocketbase";
 import { fallbackCourses } from "@/lib/fallback-data";
 import type { Course } from "@/lib/types";
 
+const DEFAULT_OLD_PRICE = 5000;
+
 async function fetchCourses(): Promise<Course[]> {
   const records = await pb.collection("courses").getFullList({
     sort: "sortOrder",
@@ -20,7 +22,7 @@ async function fetchCourses(): Promise<Course[]> {
     category: r.category,
     level: r.level,
     price: r.price,
-    oldPrice: r.oldPrice,
+    oldPrice: r.oldPrice || DEFAULT_OLD_PRICE,
     features: (r.features || "").split(/\r?\n/).filter(Boolean),
     telegramLink: r.telegramLink || "",
     targetAudience: (r.targetAudience || "").split(/\r?\n/).filter(Boolean),
