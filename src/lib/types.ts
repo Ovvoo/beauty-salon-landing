@@ -12,6 +12,16 @@ export interface Course {
   targetAudience: string[];
 }
 
+export interface Lead {
+  email: string;
+  courseId: string;
+  courseTitle: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  referrer?: string;
+}
+
 export type TelegramPostType = "review" | "news";
 
 export interface TelegramPost {

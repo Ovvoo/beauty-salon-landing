@@ -21,9 +21,20 @@ export interface TelegramPostRecord extends RecordModel {
   type: TelegramPostType;
 }
 
+export interface LeadRecord extends RecordModel {
+  email: string;
+  courseId: string;
+  courseTitle: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  referrer?: string;
+}
+
 interface TypedPocketBase extends PocketBase {
   collection(idOrName: "courses"): RecordService<CourseRecord>;
   collection(idOrName: "telegram_posts"): RecordService<TelegramPostRecord>;
+  collection(idOrName: "leads"): RecordService<LeadRecord>;
   collection(idOrName: string): RecordService<RecordModel>;
 }
 

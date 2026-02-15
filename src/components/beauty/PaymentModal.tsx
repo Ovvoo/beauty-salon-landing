@@ -11,6 +11,8 @@ import { Label } from "@/components/ui/label";
 import { CheckCircle, Send } from "lucide-react";
 import PriceDisplay from "./PriceDisplay";
 import type { Course } from "@/lib/types";
+import { submitLead } from "@/lib/leads";
+import { getUtmParams } from "@/lib/utm";
 
 interface PaymentModalProps {
   course: Course | null;
@@ -18,22 +20,27 @@ interface PaymentModalProps {
   onOpenChange: (open: boolean) => void;
 }
 
+const isValidEmail = (email: string) =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
 const PaymentModal = ({ course, open, onOpenChange }: PaymentModalProps) => {
-  const [telegram, setTelegram] = useState("");
+  const [email, setEmail] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!telegram || !course) return;
+    if (!email || !isValidEmail(email) || !course) return;
+
+    const utm = getUtmParams();
+    submitLead({
+      email,
+      courseId: course.id,
+      courseTitle: course.title,
+      ...utm,
+    });
 
     window.open(course.telegramLink, "_blank");
-    setTelegram("");
+    setEmail("");
     onOpenChange(false);
-  };
-
-  const handleTelegramChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let value = e.target.value;
-    value = value.replace(/^@/, "");
-    setTelegram(value);
   };
 
   if (!course) return null;
@@ -64,32 +71,27 @@ const PaymentModal = ({ course, open, onOpenChange }: PaymentModalProps) => {
             </ul>
           </div>
 
-          {/* Telegram Input */}
+          {/* Email Input */}
           <div className="space-y-1.5">
-            <Label htmlFor="telegram" className="text-xs sm:text-sm">
-              Твой Telegram
+            <Label htmlFor="email" className="text-xs sm:text-sm">
+              Твой Email
             </Label>
-            <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">
-                @
-              </span>
-              <Input
-                id="telegram"
-                type="text"
-                placeholder="username"
-                value={telegram}
-                onChange={handleTelegramChange}
-                required
-                className="h-10 sm:h-11 pl-7 text-sm"
-              />
-            </div>
+            <Input
+              id="email"
+              type="email"
+              placeholder="name@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="h-10 sm:h-11 text-sm"
+            />
           </div>
 
           {/* Submit */}
           <Button
             type="submit"
             className="w-full btn-primary h-10 sm:h-11 text-sm"
-            disabled={!telegram}
+            disabled={!email || !isValidEmail(email)}
           >
             <Send className="w-4 h-4 mr-2" />
             Записаться за {course.price.toLocaleString()} ₽
