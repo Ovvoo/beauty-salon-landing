@@ -8,8 +8,11 @@ import BeautyLanding from "./pages/BeautyLanding";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import NotFound from "./pages/NotFound";
+import { captureUtm } from "@/lib/utm";
 
 const queryClient = new QueryClient();
+
+captureUtm();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>

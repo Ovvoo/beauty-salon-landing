@@ -30,5 +30,8 @@ dist-ssr
 # Claude Code local settings (personal, not shared)
 .claude/settings.local.json
 
+# PocketBase data (never commit)
+pb_data/
+
 # Temp files
 temp/
