@@ -4,7 +4,7 @@
 // Deploy to /opt/myapp/pb_hooks/ on the VPS.
 // Env vars required: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 
-onRecordCreateRequest((e) => {
+onRecordCreateExecute((e) => {
   const BOT_TOKEN = $os.getenv("TELEGRAM_BOT_TOKEN");
   const CHAT_ID = $os.getenv("TELEGRAM_CHAT_ID");
 
