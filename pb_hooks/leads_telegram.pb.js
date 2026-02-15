@@ -1,50 +1,35 @@
 /// <reference path="../pb_data/types.d.ts" />
 
 // Sends a Telegram notification when a new lead is created.
-// Deploy to /opt/myapp/pb_hooks/ on the VPS.
+// Deploy to /opt/pocketbase/pb_hooks/ on the VPS.
 // Env vars required: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 
 onRecordCreateExecute((e) => {
-  const BOT_TOKEN = $os.getenv("TELEGRAM_BOT_TOKEN");
-  const CHAT_ID = $os.getenv("TELEGRAM_CHAT_ID");
+  var BOT_TOKEN = $os.getenv("TELEGRAM_BOT_TOKEN");
+  var CHAT_ID = $os.getenv("TELEGRAM_CHAT_ID");
+  if (!BOT_TOKEN || !CHAT_ID) { e.next(); return; }
 
-  if (!BOT_TOKEN || !CHAT_ID) {
-    console.log("[leads_telegram] Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID");
-    return e.next();
-  }
+  var email = e.record.get("email");
+  var courseTitle = e.record.get("courseTitle");
+  var utmSource = e.record.get("utmSource");
+  var utmMedium = e.record.get("utmMedium");
+  var utmCampaign = e.record.get("utmCampaign");
 
-  const record = e.record;
-  const email = record.getString("email");
-  const courseTitle = record.getString("courseTitle");
-  const utmSource = record.getString("utmSource");
-  const utmMedium = record.getString("utmMedium");
-  const utmCampaign = record.getString("utmCampaign");
-
-  let text = `📩 Новая заявка!\n\n`;
-  text += `📧 Email: ${email}\n`;
-  text += `📚 Курс: ${courseTitle}\n`;
+  var text = "New lead!\nEmail: " + email + "\nCourse: " + courseTitle;
 
   if (utmSource || utmMedium || utmCampaign) {
-    text += `\n🔗 UTM:\n`;
-    if (utmSource) text += `  source: ${utmSource}\n`;
-    if (utmMedium) text += `  medium: ${utmMedium}\n`;
-    if (utmCampaign) text += `  campaign: ${utmCampaign}\n`;
+    text += "\n\nUTM:";
+    if (utmSource) text += "\n  source: " + utmSource;
+    if (utmMedium) text += "\n  medium: " + utmMedium;
+    if (utmCampaign) text += "\n  campaign: " + utmCampaign;
   }
 
-  try {
-    $http.send({
-      url: `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text: text,
-        parse_mode: "HTML",
-      }),
-    });
-  } catch (err) {
-    console.log("[leads_telegram] Failed to send notification:", err);
-  }
+  $http.send({
+    url: "https://api.telegram.org/bot" + BOT_TOKEN + "/sendMessage",
+    method: "POST",
+    body: JSON.stringify({ chat_id: CHAT_ID, text: text }),
+    headers: { "Content-Type": "application/json" }
+  });
 
-  return e.next();
-}, "leads");
+  e.next();
+}, "Leads");
