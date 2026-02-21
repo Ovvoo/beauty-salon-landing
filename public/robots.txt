@@ -1,3 +1,6 @@
-# Closed testing - no indexing
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /api/
+Disallow: /_/
+
+Sitemap: https://www.beautystart.ru/sitemap.xml
