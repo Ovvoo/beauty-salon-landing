@@ -75,7 +75,11 @@ const CoursesSection = () => {
                 <img
                   src={course.image}
                   alt={course.title}
+                  width={400}
+                  height={300}
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute top-2 sm:top-3 left-2 sm:left-3 flex gap-2">
                   <Badge className="bg-card/90 text-card-foreground text-[10px] sm:text-xs">

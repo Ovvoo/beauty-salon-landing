@@ -95,8 +95,12 @@ const HeroSection = () => {
                 <img
                   src={heroImage}
                   alt="Мастер по наращиванию ресниц"
+                  width={600}
+                  height={480}
                   className="w-full aspect-[3/2] sm:aspect-[4/5] md:aspect-[4/3] lg:aspect-[5/4] object-cover object-top md:max-h-[26rem] lg:max-h-[30rem] xl:max-h-[34rem]"
                   loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent" />
               </div>
