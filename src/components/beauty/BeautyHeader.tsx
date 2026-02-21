@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Logo from "@/components/beauty/Logo";
 
 const BeautyHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,9 +33,7 @@ const BeautyHeader = () => {
         <div className="flex items-center justify-between h-14 sm:h-16 md:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center">
-            <span className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-primary">
-              BEAUTY<span className="text-gold">START</span>
-            </span>
+            <Logo className="text-lg sm:text-xl md:text-2xl" />
           </a>
 
           {/* Desktop Navigation */}

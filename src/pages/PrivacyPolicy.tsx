@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import BeautyHeader from "../components/beauty/BeautyHeader";
 import BeautyFooter from "../components/beauty/BeautyFooter";
+import { SITE } from "@/config/site";
 
 const PrivacyPolicy = () => {
   useEffect(() => {
-    document.title = "Политика конфиденциальности — BeautyStart";
+    document.title = `Политика конфиденциальности — ${SITE.name}`;
   }, []);
 
   return (
@@ -28,7 +29,7 @@ const PrivacyPolicy = () => {
                 1. Общие положения
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                BeautyStart.ru (далее — «Сайт») уважает вашу конфиденциальность и обязуется защищать персональные данные, которые вы предоставляете при использовании Сайта. Настоящая Политика описывает, какие данные мы собираем, как их используем и защищаем.
+                {SITE.domain} (далее — «Сайт») уважает вашу конфиденциальность и обязуется защищать персональные данные, которые вы предоставляете при использовании Сайта. Настоящая Политика описывает, какие данные мы собираем, как их используем и защищаем.
               </p>
             </section>
 
@@ -99,8 +100,8 @@ const PrivacyPolicy = () => {
                 8. Контактная информация
               </h2>
               <div className="text-muted-foreground text-sm sm:text-base space-y-1">
-                <p>Сайт: BeautyStart.ru</p>
-                <p>Email: info@beautystart.ru</p>
+                <p>Сайт: {SITE.domain}</p>
+                <p>Email: {SITE.email}</p>
                 <p>Telegram: @Education_La</p>
               </div>
             </section>

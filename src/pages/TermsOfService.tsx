@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import BeautyHeader from "../components/beauty/BeautyHeader";
 import BeautyFooter from "../components/beauty/BeautyFooter";
+import { SITE } from "@/config/site";
 
 const TermsOfService = () => {
   useEffect(() => {
-    document.title = "Публичная оферта — BeautyStart";
+    document.title = `Публичная оферта — ${SITE.name}`;
   }, []);
 
   return (
@@ -28,7 +29,7 @@ const TermsOfService = () => {
                 1. Общие положения
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                Настоящий документ является публичной офертой BeautyStart.ru (далее — «Исполнитель») и определяет условия предоставления доступа к онлайн-курсам по наращиванию ресниц и оформлению бровей. Оплата курса является акцептом настоящей оферты.
+                Настоящий документ является публичной офертой {SITE.domain} (далее — «Исполнитель») и определяет условия предоставления доступа к онлайн-курсам по наращиванию ресниц и оформлению бровей. Оплата курса является акцептом настоящей оферты.
               </p>
             </section>
 
@@ -46,7 +47,7 @@ const TermsOfService = () => {
                 3. Порядок оплаты
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                Оплата производится единовременно в полном объёме до получения доступа к материалам курса. Цены указаны на сайте BeautyStart.ru и могут изменяться без предварительного уведомления. Стоимость курса фиксируется в момент оплаты.
+                Оплата производится единовременно в полном объёме до получения доступа к материалам курса. Цены указаны на сайте {SITE.domain} и могут изменяться без предварительного уведомления. Стоимость курса фиксируется в момент оплаты.
               </p>
             </section>
 
@@ -82,8 +83,8 @@ const TermsOfService = () => {
                 7. Контактная информация
               </h2>
               <div className="text-muted-foreground text-sm sm:text-base space-y-1">
-                <p>Сайт: BeautyStart.ru</p>
-                <p>Email: info@beautystart.ru</p>
+                <p>Сайт: {SITE.domain}</p>
+                <p>Email: {SITE.email}</p>
                 <p>Telegram: @Education_La</p>
               </div>
             </section>

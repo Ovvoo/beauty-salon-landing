@@ -1,4 +1,6 @@
 import { Send, Instagram, Mail } from "lucide-react";
+import Logo from "@/components/beauty/Logo";
+import { SITE } from "@/config/site";
 
 const BeautyFooter = () => {
   return (
@@ -8,9 +10,7 @@ const BeautyFooter = () => {
           {/* Logo & Description */}
           <div className="sm:col-span-2 md:col-span-1">
             <a href="#" className="inline-block mb-3 sm:mb-4">
-              <span className="font-heading text-xl sm:text-2xl font-bold text-background">
-                BEAUTY<span className="text-gold">START</span>
-              </span>
+              <Logo variant="light" className="text-xl sm:text-2xl" />
             </a>
             <p className="text-background/70 text-xs sm:text-sm leading-relaxed">
               Авторские онлайн-курсы по наращиванию ресниц и оформлению бровей от практикующего мастера.
@@ -40,11 +40,11 @@ const BeautyFooter = () => {
                 <span>Instagram</span>
               </a>
               <a
-                href="mailto:info@beautystart.ru"
+                href={`mailto:${SITE.email}`}
                 className="flex items-center gap-2 sm:gap-3 text-background/70 hover:text-gold transition-colors duration-200 text-sm"
               >
                 <Mail className="w-4 sm:w-5 h-4 sm:h-5" />
-                <span>info@beautystart.ru</span>
+                <span>{SITE.email}</span>
               </a>
             </div>
           </div>
@@ -72,7 +72,7 @@ const BeautyFooter = () => {
         {/* Copyright */}
         <div className="mt-6 sm:mt-8 md:mt-10 pt-6 sm:pt-8 border-t border-background/20 text-center">
           <p className="text-background/50 text-xs sm:text-sm">
-            © {new Date().getFullYear()} BeautyStart. Все права защищены.
+            {SITE.copyright(new Date().getFullYear())}
           </p>
         </div>
       </div>

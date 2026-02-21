@@ -2,7 +2,7 @@
 
 ## Схема
 ```
-Браузер → Nginx (443, www.beautystart.ru)
+Браузер → Nginx (443, www.beautybegin.ru)
             ├── /          → static files (/opt/myapp/dist)
             ├── /api       → PocketBase (localhost:8090)
             └── /_         → PocketBase Admin (localhost:8090)
@@ -17,10 +17,10 @@
 ## Домены
 | Запрос | Результат |
 |--------|-----------|
-| `http://beautystart.ru` | 301 → `https://www.beautystart.ru` |
-| `http://www.beautystart.ru` | 301 → `https://www.beautystart.ru` |
-| `https://beautystart.ru` | 301 → `https://www.beautystart.ru` |
-| `https://www.beautystart.ru` | 200 (основной) |
+| `http://beautybegin.ru` | 301 → `https://www.beautybegin.ru` |
+| `http://www.beautybegin.ru` | 301 → `https://www.beautybegin.ru` |
+| `https://beautybegin.ru` | 301 → `https://www.beautybegin.ru` |
+| `https://www.beautybegin.ru` | 200 (основной) |
 
 ## PocketBase
 - SDK: `pocketbase ^0.26.8` (npm)
