@@ -1,4 +1,5 @@
 import { Send, Instagram, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 import Logo from "@/components/beauty/Logo";
 import { SITE } from "@/config/site";
 
@@ -9,9 +10,9 @@ const BeautyFooter = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-12">
           {/* Logo & Description */}
           <div className="sm:col-span-2 md:col-span-1">
-            <a href="#" className="inline-block mb-3 sm:mb-4">
+            <Link to="/" className="inline-block mb-3 sm:mb-4">
               <Logo variant="light" className="text-xl sm:text-2xl" />
-            </a>
+            </Link>
             <p className="text-background/70 text-xs sm:text-sm leading-relaxed">
               Авторские онлайн-курсы по наращиванию ресниц и оформлению бровей от практикующего мастера.
             </p>
@@ -53,18 +54,18 @@ const BeautyFooter = () => {
           <div>
             <h4 className="font-heading font-semibold text-base sm:text-lg mb-3 sm:mb-4">Документы</h4>
             <div className="space-y-2 sm:space-y-3">
-              <a
-                href="/terms-of-service"
+              <Link
+                to="/terms-of-service"
                 className="block text-background/70 hover:text-gold transition-colors duration-200 text-sm"
               >
                 Публичная оферта
-              </a>
-              <a
-                href="/privacy-policy"
+              </Link>
+              <Link
+                to="/privacy-policy"
                 className="block text-background/70 hover:text-gold transition-colors duration-200 text-sm"
               >
                 Политика конфиденциальности
-              </a>
+              </Link>
             </div>
           </div>
         </div>
