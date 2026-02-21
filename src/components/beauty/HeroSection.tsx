@@ -50,7 +50,7 @@ const HeroSection = () => {
 
               {/* CTA Buttons — h-11 (44px) = WCAG AAA touch target */}
               <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 animate-fade-in animate-delay-200 mb-5 sm:mb-6 md:mb-8">
-                <a href="#courses" className="w-full sm:w-auto">
+                <a href="/#courses" className="w-full sm:w-auto">
                   <Button
                     size="lg"
                     className="btn-primary text-sm lg:text-base px-5 lg:px-6 h-11 rounded-xl shadow-md hover:shadow-lg transition-all w-full"
@@ -58,7 +58,7 @@ const HeroSection = () => {
                     Смотреть курсы
                   </Button>
                 </a>
-                <a href="#reviews" className="w-full sm:w-auto">
+                <a href="/#reviews" className="w-full sm:w-auto">
                   <Button
                     variant="outline"
                     size="lg"
