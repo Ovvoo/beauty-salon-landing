@@ -1,11 +1,11 @@
 import type { Course, TelegramPost } from "@/lib/types";
-import course1 from "@/assets/course-1.jpg";
-import course2 from "@/assets/course-2.jpg";
-import course3 from "@/assets/course-3.jpg";
-import course4 from "@/assets/course-4.jpg";
-import course5 from "@/assets/course-5.jpg";
-import course6 from "@/assets/course-6.jpg";
-import course7 from "@/assets/course-7.jpg";
+import course1 from "@/assets/course-1.webp";
+import course2 from "@/assets/course-2.webp";
+import course3 from "@/assets/course-3.webp";
+import course4 from "@/assets/course-4.webp";
+import course5 from "@/assets/course-5.webp";
+import course6 from "@/assets/course-6.webp";
+import course7 from "@/assets/course-7.webp";
 
 export const fallbackCourses: Course[] = [
   {

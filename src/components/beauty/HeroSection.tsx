@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-beauty.jpg";
+import heroImage from "@/assets/hero-beauty.webp";
 
 /**
  * Hero Section — Above the Fold
