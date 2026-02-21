@@ -3,7 +3,6 @@ import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Logo from "@/components/beauty/Logo";
-import { scrollToSection } from "@/lib/utils";
 
 const BeautyHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,16 +24,6 @@ const BeautyHeader = () => {
     { href: "/#faq", label: "Вопросы" },
   ];
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const href = e.currentTarget.getAttribute("href");
-    if (!href) return;
-
-    if (scrollToSection(href)) {
-      e.preventDefault();
-      setIsMenuOpen(false);
-    }
-  };
-
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -54,13 +43,12 @@ const BeautyHeader = () => {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={handleNavClick}
                 className="text-foreground/80 hover:text-primary transition-colors duration-200 font-medium text-sm lg:text-base"
               >
                 {link.label}
               </a>
             ))}
-            <a href="/#courses" onClick={handleNavClick}>
+            <a href="/#courses">
               <Button className="btn-primary text-sm lg:text-base">Выбрать курс</Button>
             </a>
           </nav>
@@ -89,13 +77,13 @@ const BeautyHeader = () => {
             <a
               key={link.href}
               href={link.href}
-              onClick={handleNavClick}
+              onClick={() => setIsMenuOpen(false)}
               className="text-foreground/80 hover:text-primary transition-colors duration-200 font-medium py-2.5 sm:py-3 text-sm sm:text-base"
             >
               {link.label}
             </a>
           ))}
-          <a href="/#courses" onClick={handleNavClick} className="mt-2">
+          <a href="/#courses" onClick={() => setIsMenuOpen(false)} className="mt-2">
             <Button className="btn-primary w-full text-sm sm:text-base py-2.5 sm:py-3">Выбрать курс</Button>
           </a>
         </nav>

@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { scrollToSection } from "@/lib/utils";
 import heroImage from "@/assets/hero-beauty.webp";
 
 /**
@@ -11,13 +10,6 @@ import heroImage from "@/assets/hero-beauty.webp";
  * - Все элементы видны без скролла
  */
 const HeroSection = () => {
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const href = e.currentTarget.getAttribute("href");
-    if (href && scrollToSection(href)) {
-      e.preventDefault();
-    }
-  };
-
   return (
     <section className="relative bg-background">
       {/* Background decorative shape */}
@@ -58,7 +50,7 @@ const HeroSection = () => {
 
               {/* CTA Buttons — h-11 (44px) = WCAG AAA touch target */}
               <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 animate-fade-in animate-delay-200 mb-5 sm:mb-6 md:mb-8">
-                <a href="/#courses" onClick={handleNavClick} className="w-full sm:w-auto">
+                <a href="/#courses" className="w-full sm:w-auto">
                   <Button
                     size="lg"
                     className="btn-primary text-sm lg:text-base px-5 lg:px-6 h-11 rounded-xl shadow-md hover:shadow-lg transition-all w-full"
@@ -66,7 +58,7 @@ const HeroSection = () => {
                     Смотреть курсы
                   </Button>
                 </a>
-                <a href="/#reviews" onClick={handleNavClick} className="w-full sm:w-auto">
+                <a href="/#reviews" className="w-full sm:w-auto">
                   <Button
                     variant="outline"
                     size="lg"

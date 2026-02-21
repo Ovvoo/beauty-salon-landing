@@ -50,9 +50,6 @@
     
     --radius: 0.5rem;
 
-    /* Header height — used for scroll-padding-top */
-    --header-height: 3.5rem; /* h-14 */
-
     /* Sidebar */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 0 0% 20%;
@@ -63,14 +60,6 @@
     --sidebar-border: 0 0% 90%;
     --sidebar-ring: 355 44% 32%;
   }
-
-  /* Responsive header height: sm:h-16, md:h-20 */
-  @media (min-width: 640px) {
-    :root { --header-height: 4rem; }
-  }
-  @media (min-width: 768px) {
-    :root { --header-height: 5rem; }
-  }
 }
 
 @layer base {
@@ -80,7 +69,6 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: var(--header-height);
   }
 
   body {
@@ -96,7 +84,6 @@
 @layer components {
   .section-padding {
     @apply px-4 py-12 md:px-6 md:py-16 lg:py-20;
-    scroll-margin-top: var(--header-height);
   }
 
   .container-narrow {
