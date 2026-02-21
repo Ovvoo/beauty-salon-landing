@@ -36,6 +36,9 @@ function convertToWebP(record, collection, field) {
   var filename = record.get(field);
   if (!filename || !hasImageExtension(filename)) return;
 
+  // Skip if already WebP (prevents redundant processing on recursive hook call)
+  if (filename.toLowerCase().endsWith(".webp")) return;
+
   // PocketBase storage path: pb_data/storage/<collection>/<record>/<filename>
   var storagePath =
     $os.getenv("PB_DATA_DIR") ||

@@ -29,7 +29,7 @@
  */
 
 import sharp from "sharp";
-import { readdir, stat, mkdir } from "node:fs/promises";
+import { readdir, stat } from "node:fs/promises";
 import { resolve, join, parse, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { existsSync } from "node:fs";
