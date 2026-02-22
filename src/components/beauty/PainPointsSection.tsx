@@ -11,7 +11,7 @@ const DELAY_CLASSES = [
 
 const PainPointsSection = () => {
   return (
-    <section className="section-padding bg-muted">
+    <section id={painPoints.sectionId} className="section-padding bg-muted">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
         <h2 className="section-title">{painPoints.title}</h2>
 

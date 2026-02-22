@@ -38,6 +38,7 @@ interface LandingConfig {
     imageAlt: string;
   };
   painPoints: {
+    sectionId: string;
     title: string;
     subtitle: string;
     items: PainPoint[];
@@ -74,6 +75,7 @@ interface LandingConfig {
 export const LANDING: LandingConfig = {
   header: {
     navLinks: [
+      { href: "/#pain-points", label: "Узнаёшь себя?" },
       { href: "/#courses", label: "Курсы" },
       { href: "/#how-it-works", label: "Обучение" },
       { href: "/#reviews", label: "Live" },
@@ -103,6 +105,7 @@ export const LANDING: LandingConfig = {
   },
 
   painPoints: {
+    sectionId: "pain-points",
     title: "Узнаёшь себя?",
     subtitle: "",
     items: [
