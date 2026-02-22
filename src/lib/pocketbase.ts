@@ -6,7 +6,7 @@ export interface CourseRecord extends RecordModel {
   tagline?: string;
   description: string;
   image: string;
-  category: "Ресницы" | "Брови" | "Шугаринг" | "Волос";
+  category: "Ресницы" | "Брови" | "Шугаринг" | "Волос" | "Педикюр";
   level: "Начинающий" | "Повышение квалификации" | "Продвинутый";
   price: number;
   oldPrice?: number;
