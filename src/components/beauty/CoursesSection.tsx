@@ -96,11 +96,11 @@ const CoursesSection = () => {
                   <span className="text-[10px] sm:text-xs text-muted-foreground">{course.level}</span>
                 </div>
 
-                <h3 className="font-heading font-semibold text-sm sm:text-base md:text-lg text-card-foreground mb-1.5 sm:mb-2 leading-snug">
+                <h3 className="font-heading font-semibold text-sm sm:text-base md:text-lg text-card-foreground mb-1.5 sm:mb-2 leading-snug min-h-[2.5rem] sm:min-h-[3rem]">
                   {course.title}
                 </h3>
 
-                <p className="text-muted-foreground text-xs sm:text-sm mb-3 sm:mb-4 flex-1 leading-relaxed">
+                <p className="text-muted-foreground text-xs sm:text-sm mb-3 sm:mb-4 flex-1 leading-relaxed line-clamp-3">
                   {course.description}
                 </p>
 
