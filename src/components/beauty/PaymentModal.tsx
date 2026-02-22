@@ -101,7 +101,13 @@ const PaymentModal = ({ course, open, onOpenChange }: PaymentModalProps) => {
         </div>
 
         {/* ===== SCROLLABLE BODY ===== */}
-        <div className="flex-1 overflow-y-auto px-4 sm:px-5 py-2 min-h-0">
+        <div className="flex-1 overflow-y-auto px-4 sm:px-5 py-2 min-h-0 space-y-2.5">
+          {/* Full description */}
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            {course.description}
+          </p>
+
+          {/* Target audience */}
           <div className="bg-muted/50 rounded-lg p-2.5 sm:p-3">
             <p className="text-xs font-medium text-foreground mb-1.5">Этот курс для тебя, если ты:</p>
             <ul className="space-y-1">

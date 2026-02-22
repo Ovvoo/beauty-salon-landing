@@ -21,6 +21,16 @@ const getLevelColor = (level: Course["level"]) => {
   }
 };
 
+/** Truncate text at word boundary. Used as temporary teaser until tagline field is added to PB. */
+const truncateText = (text: string, maxLength: number): string => {
+  if (text.length <= maxLength) return text;
+  const truncated = text.slice(0, maxLength);
+  const lastSpace = truncated.lastIndexOf(" ");
+  return (lastSpace > 0 ? truncated.slice(0, lastSpace) : truncated) + "...";
+};
+
+const TEASER_LENGTH = 80;
+
 const DELAY_CLASSES = [
   "animate-delay-0",
   "animate-delay-50",
@@ -106,9 +116,9 @@ const CoursesSection = () => {
                   {course.title}
                 </h3>
 
-                {/* Description — 2-line teaser, standard marketplace pattern */}
-                <p className="text-muted-foreground text-sm leading-relaxed mb-3 line-clamp-2">
-                  {course.description}
+                {/* Description teaser — full text in modal */}
+                <p className="text-muted-foreground text-sm leading-relaxed mb-3">
+                  {truncateText(course.description, TEASER_LENGTH)}
                 </p>
 
                 {/* Features */}
