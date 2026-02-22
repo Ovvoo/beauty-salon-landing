@@ -3,6 +3,7 @@ import type { TelegramPostType } from "@/lib/types";
 
 export interface CourseRecord extends RecordModel {
   title: string;
+  tagline?: string;
   description: string;
   image: string;
   category: "Ресницы" | "Брови" | "Шугаринг" | "Волос";

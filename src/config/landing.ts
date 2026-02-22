@@ -77,7 +77,7 @@ export const LANDING: LandingConfig = {
     navLinks: [
       { href: "/#pain-points", label: "Узнаёшь себя?" },
       { href: "/#courses", label: "Курсы" },
-      { href: "/#how-it-works", label: "Обучение" },
+      { href: "/#how-it-works", label: "Процесс" },
       { href: "/#reviews", label: "Live" },
       { href: "/#faq", label: "Вопросы" },
     ],

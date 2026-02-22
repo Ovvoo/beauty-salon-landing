@@ -116,9 +116,9 @@ const CoursesSection = () => {
                   {course.title}
                 </h3>
 
-                {/* Description teaser — full text in modal */}
+                {/* Tagline or truncated description — full text in modal */}
                 <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                  {truncateText(course.description, TEASER_LENGTH)}
+                  {course.tagline || truncateText(course.description, TEASER_LENGTH)}
                 </p>
 
                 {/* Features */}

@@ -1,6 +1,8 @@
 export interface Course {
   id: string;
   title: string;
+  /** Short teaser for cards (max ~80 chars). Falls back to truncated description. */
+  tagline?: string;
   description: string;
   image: string;
   category: "Ресницы" | "Брови" | "Шугаринг" | "Волос";

@@ -15,6 +15,7 @@ async function fetchCourses(): Promise<Course[]> {
   return records.map((r) => ({
     id: r.id,
     title: r.title,
+    tagline: r.tagline || undefined,
     description: r.description,
     image: r.image
       ? pb.files.getURL(r, r.image, { thumb: "600x400" })
