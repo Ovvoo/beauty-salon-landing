@@ -66,6 +66,7 @@ const LiveSection = () => {
 
         {posts.length > 0 && (
           <Carousel
+            key={activeTab}
             opts={{ align: "start", loop: true }}
             setApi={setApi}
             className="w-full max-w-5xl mx-auto"
