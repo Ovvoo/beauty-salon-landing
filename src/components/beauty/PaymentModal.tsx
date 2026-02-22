@@ -2,13 +2,10 @@ import { useState } from "react";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { CheckCircle, Send, Play, Award, MessageCircle } from "lucide-react";
 import PriceDisplay from "./PriceDisplay";
 import type { Course } from "@/lib/types";
@@ -54,103 +51,96 @@ const PaymentModal = ({ course, open, onOpenChange }: PaymentModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-[calc(100%-2rem)] max-w-sm md:max-w-2xl p-0 rounded-xl overflow-hidden gap-0">
-        {/*
-          Mobile: вертикальный (image сверху, контент снизу)
-          Desktop: горизонтальный (image слева 40%, контент справа 60%)
-        */}
-        <div className="flex flex-col md:flex-row">
-          {/* Image — top on mobile, left on desktop */}
+      <DialogContent className="w-[calc(100%-2rem)] max-w-sm md:max-w-md p-0 rounded-xl overflow-hidden gap-0 flex flex-col max-h-[90vh]">
+
+        {/* ===== STICKY TOP: Image + Title overlay ===== */}
+        <div className="relative shrink-0">
           {course.image && (
-            <div className="relative w-full md:w-2/5 shrink-0">
+            <>
               <img
                 src={course.image}
                 alt={course.title}
-                className="w-full h-40 sm:h-44 md:h-full md:min-h-[24rem] object-cover"
+                className="w-full h-44 sm:h-52 object-cover"
                 loading="lazy"
                 decoding="async"
               />
-              <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-black/30 to-transparent" />
-              <div className="absolute bottom-2.5 left-3 md:bottom-3 md:left-3 flex gap-1.5">
-                <Badge className="bg-card/90 text-card-foreground text-[10px] sm:text-xs">
-                  {course.category}
-                </Badge>
-                <Badge variant="outline" className="bg-card/90 text-card-foreground border-card/50 text-[10px] sm:text-xs">
-                  {course.level}
-                </Badge>
-              </div>
-            </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+            </>
           )}
-
-          {/* Content — bottom on mobile, right on desktop */}
-          <div className="flex-1 p-4 sm:p-5 overflow-y-auto max-h-[60vh] md:max-h-[80vh]">
-            <DialogHeader className="pb-2">
-              <DialogTitle className="font-heading text-base sm:text-lg leading-tight pr-8">
-                {course.title}
-              </DialogTitle>
-            </DialogHeader>
-
-            {/* Price */}
-            <div className="mb-3">
-              <PriceDisplay price={course.price} oldPrice={course.oldPrice} variant="lg" />
+          {/* Title + price on image */}
+          <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
+            <h2 className="font-heading text-base sm:text-lg font-bold text-background leading-tight mb-1">
+              {course.title}
+            </h2>
+            <div className="flex items-baseline gap-2">
+              {course.oldPrice && course.oldPrice > course.price && (
+                <span className="line-through text-background/60 text-xs sm:text-sm">
+                  {course.oldPrice.toLocaleString()} ₽
+                </span>
+              )}
+              <span className="font-bold text-gold text-lg sm:text-xl">
+                {course.price.toLocaleString()} ₽
+              </span>
             </div>
-
-            {/* Guarantees */}
-            <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3">
-              {GUARANTEES.map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-center gap-1.5 bg-muted/50 rounded-full px-2.5 py-1">
-                  <Icon className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-primary shrink-0" />
-                  <span className="text-[10px] sm:text-xs text-foreground whitespace-nowrap">{text}</span>
-                </div>
-              ))}
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-3">
-              {/* Target Audience */}
-              <div className="bg-muted/50 rounded-lg p-2.5 sm:p-3">
-                <p className="text-xs font-medium text-foreground mb-1.5">Этот курс для тебя, если ты:</p>
-                <ul className="space-y-1">
-                  {course.targetAudience.map((item, index) => (
-                    <li key={index} className="flex items-start gap-1.5 text-xs text-muted-foreground">
-                      <CheckCircle className="w-3.5 h-3.5 text-success mt-0.5 shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Email Input */}
-              <div className="space-y-1.5">
-                <Label htmlFor="email" className="text-xs sm:text-sm">
-                  Твой Email
-                </Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="name@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className="h-11 text-sm"
-                />
-              </div>
-
-              {/* Submit — h-11 = 44px WCAG touch target */}
-              <Button
-                type="submit"
-                className="w-full btn-primary h-11 text-sm"
-                disabled={!email || !isValidEmail(email)}
-              >
-                <Send className="w-4 h-4 mr-2" />
-                Записаться за {course.price.toLocaleString()} ₽
-              </Button>
-
-              <p className="text-[10px] sm:text-xs text-center text-muted-foreground leading-tight">
-                После нажатия откроется Telegram-канал курса с инструкциями
-              </p>
-            </form>
           </div>
         </div>
+
+        {/* Badges + guarantees — under image */}
+        <div className="px-3 sm:px-4 pt-3 pb-1 shrink-0 flex flex-wrap gap-1.5">
+          <Badge className="bg-primary/10 text-primary border-0 text-[10px] sm:text-xs">
+            {course.category}
+          </Badge>
+          <Badge className="bg-muted text-muted-foreground border-0 text-[10px] sm:text-xs">
+            {course.level}
+          </Badge>
+          {GUARANTEES.map(({ icon: Icon, text }) => (
+            <div key={text} className="flex items-center gap-1 bg-muted/50 rounded-full px-2 py-0.5">
+              <Icon className="w-3 h-3 text-primary shrink-0" />
+              <span className="text-[10px] sm:text-xs text-foreground">{text}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* ===== SCROLLABLE BODY ===== */}
+        <div className="flex-1 overflow-y-auto px-3 sm:px-4 py-2">
+          <div className="bg-muted/50 rounded-lg p-2.5 sm:p-3">
+            <p className="text-xs font-medium text-foreground mb-1.5">Этот курс для тебя, если ты:</p>
+            <ul className="space-y-1">
+              {course.targetAudience.map((item, index) => (
+                <li key={index} className="flex items-start gap-1.5 text-xs text-muted-foreground">
+                  <CheckCircle className="w-3.5 h-3.5 text-success mt-0.5 shrink-0" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* ===== STICKY BOTTOM: Email + CTA ===== */}
+        <form onSubmit={handleSubmit} className="shrink-0 px-3 sm:px-4 pb-3 sm:pb-4 pt-2 border-t border-border bg-background space-y-2.5">
+          <div className="flex gap-2">
+            <Input
+              type="email"
+              placeholder="Твой Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              aria-label="Email"
+              className="h-11 text-sm flex-1"
+            />
+            <Button
+              type="submit"
+              className="btn-primary h-11 text-sm px-4 sm:px-5 shrink-0"
+              disabled={!email || !isValidEmail(email)}
+            >
+              <Send className="w-4 h-4 sm:mr-2" />
+              <span className="hidden sm:inline">Записаться</span>
+            </Button>
+          </div>
+          <p className="text-[10px] sm:text-xs text-center text-muted-foreground leading-tight">
+            После нажатия откроется Telegram-канал с инструкциями
+          </p>
+        </form>
       </DialogContent>
     </Dialog>
   );
