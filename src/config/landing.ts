@@ -4,7 +4,7 @@ interface NavLink {
 }
 
 interface PainPoint {
-  emoji: string;
+  iconName: "Wallet" | "ShieldAlert" | "TrendingDown" | "FileX";
   title: string;
   description: string;
 }
@@ -107,30 +107,30 @@ export const LANDING: LandingConfig = {
   painPoints: {
     sectionId: "pain-points",
     title: "Узнаёшь себя?",
-    subtitle: "",
+    subtitle: "Если хотя бы один пункт про тебя — наши курсы помогут",
     items: [
       {
-        emoji: "💸",
+        iconName: "Wallet",
         title: "Работаешь за процент",
         description: "40–50% хозяйке — а устаёшь в три раза больше",
       },
       {
-        emoji: "😰",
+        iconName: "ShieldAlert",
         title: "Хочешь, но боишься навредить",
         description: "Без наставника страшно работать с клиентом",
       },
       {
-        emoji: "📉",
+        iconName: "TrendingDown",
         title: "Умеешь классику — чек стоит",
         description: "Клиенты просят объёмы, а ты отказываешь",
       },
       {
-        emoji: "📱",
+        iconName: "FileX",
         title: "Нет сертификата — нет доверия",
         description: "Новые клиенты хотят документ — иначе не запишутся",
       },
     ],
-    closingLine: "Решается за 2 недели. Без поездок, в своём темпе.",
+    closingLine: "Всё это решается за 2 недели. Без поездок, в своём темпе.",
   },
 
   product: {

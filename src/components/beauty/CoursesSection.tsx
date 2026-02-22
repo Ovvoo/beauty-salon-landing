@@ -21,6 +21,15 @@ const getLevelColor = (level: Course["level"]) => {
   }
 };
 
+const DELAY_CLASSES = [
+  "animate-delay-0",
+  "animate-delay-50",
+  "animate-delay-100",
+  "animate-delay-150",
+  "animate-delay-200",
+  "animate-delay-250",
+];
+
 const CoursesSection = () => {
   const { data: courses, dataUpdatedAt, isError, isFetching } = useCourses();
   const isUsingFallback = dataUpdatedAt === 0;
@@ -28,7 +37,7 @@ const CoursesSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showAll, setShowAll] = useState(false);
 
-  const handleBuyClick = (course: Course) => {
+  const handleOpenCourse = (course: Course) => {
     setSelectedCourse(course);
     setIsModalOpen(true);
   };
@@ -56,28 +65,23 @@ const CoursesSection = () => {
         )}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
-          {visibleCourses.map((course, index) => {
-            const delayClasses = [
-              "animate-delay-0",
-              "animate-delay-50",
-              "animate-delay-100",
-              "animate-delay-150",
-              "animate-delay-200",
-              "animate-delay-250",
-            ];
-            return (
+          {visibleCourses.map((course, index) => (
             <div
               key={course.id}
-              className={`bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 animate-fade-in flex flex-col ${delayClasses[index] || ""}`}
+              className={`bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 animate-fade-in flex flex-col ${DELAY_CLASSES[index] || ""}`}
             >
-              {/* Image */}
-              <div className="relative h-36 sm:h-40 md:h-48 overflow-hidden">
+              {/* Image — clickable, opens modal */}
+              <button
+                type="button"
+                onClick={() => handleOpenCourse(course)}
+                className="relative aspect-[16/10] overflow-hidden group cursor-pointer"
+              >
                 <img
                   src={course.image}
                   alt={course.title}
                   width={400}
-                  height={300}
-                  className="w-full h-full object-cover"
+                  height={250}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
                   decoding="async"
                 />
@@ -86,21 +90,24 @@ const CoursesSection = () => {
                     {course.category}
                   </Badge>
                 </div>
-              </div>
+                {/* Hover overlay hint */}
+                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300" />
+              </button>
 
               {/* Content */}
-              <div className="p-3 sm:p-4 md:p-5 flex flex-col flex-1">
+              <div className="p-4 sm:p-5 flex flex-col flex-1">
                 {/* Level Badge */}
-                <div className="flex items-center gap-2 mb-1.5 sm:mb-2">
-                  <span className={`w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full ${getLevelColor(course.level)}`} />
-                  <span className="text-[10px] sm:text-xs text-muted-foreground">{course.level}</span>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className={`w-2 h-2 rounded-full shrink-0 ${getLevelColor(course.level)}`} />
+                  <span className="text-xs text-muted-foreground">{course.level}</span>
                 </div>
 
-                <h3 className="font-heading font-semibold text-sm sm:text-base md:text-lg text-card-foreground mb-1.5 sm:mb-2 leading-snug min-h-[2.5rem] sm:min-h-[3rem]">
+                <h3 className="font-heading font-semibold text-base sm:text-lg text-card-foreground mb-2 leading-snug min-h-[2.75rem]">
                   {course.title}
                 </h3>
 
-                <p className="text-muted-foreground text-xs sm:text-sm mb-3 sm:mb-4 flex-1 leading-relaxed line-clamp-3">
+                {/* Description — 2-line teaser, standard marketplace pattern */}
+                <p className="text-muted-foreground text-sm leading-relaxed mb-3 line-clamp-2">
                   {course.description}
                 </p>
 
@@ -109,7 +116,7 @@ const CoursesSection = () => {
                   {course.features.map((feature) => (
                     <span
                       key={feature}
-                      className="text-[10px] sm:text-xs bg-muted text-muted-foreground px-1.5 sm:px-2 py-0.5 sm:py-1 rounded"
+                      className="text-[10px] sm:text-xs bg-muted text-muted-foreground px-2 py-0.5 sm:py-1 rounded"
                     >
                       {feature}
                     </span>
@@ -120,16 +127,15 @@ const CoursesSection = () => {
                 <div className="flex items-center justify-between mt-auto pt-3 sm:pt-4 border-t border-border gap-2">
                   <PriceDisplay price={course.price} oldPrice={course.oldPrice} />
                   <Button
-                    onClick={() => handleBuyClick(course)}
-                    className="btn-primary text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 shrink-0"
+                    onClick={() => handleOpenCourse(course)}
+                    className="btn-primary text-xs sm:text-sm px-4 py-2 shrink-0"
                   >
                     Подробнее
                   </Button>
                 </div>
               </div>
             </div>
-          );
-          })}
+          ))}
         </div>
 
         {hasMoreCourses && !showAll && (
