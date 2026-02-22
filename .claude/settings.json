@@ -10,7 +10,8 @@
       "Bash(npm run:*)",
       "Bash(ls:*)",
       "Read(//root/projects/**)"
-    ]
+    ],
+    "defaultMode": "dontAsk"
   },
   "enabledPlugins": {
     "context7@claude-plugins-official": true,
