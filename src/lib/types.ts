@@ -3,7 +3,7 @@ export interface Course {
   title: string;
   description: string;
   image: string;
-  category: "Ресницы" | "Брови";
+  category: "Ресницы" | "Брови" | "Шугаринг" | "Волос";
   level: "Начинающий" | "Повышение квалификации" | "Продвинутый";
   price: number;
   oldPrice?: number;
