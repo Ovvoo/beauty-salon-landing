@@ -12,6 +12,10 @@ import { captureUtm } from "@/lib/utm";
 
 const queryClient = new QueryClient();
 
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
 captureUtm();
 
 const App = () => (
