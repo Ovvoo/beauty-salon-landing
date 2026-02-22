@@ -167,7 +167,7 @@ export const LANDING: LandingConfig = {
   },
 
   live: {
-    title: "Отзывы и наша жизнь",
+    title: "Live",
     sectionId: "reviews",
     tabs: [
       { key: "review", label: "Отзывы учениц" },
@@ -178,8 +178,7 @@ export const LANDING: LandingConfig = {
 
   cta: {
     headline: "Начни зарабатывать на любимом деле",
-    subheadline:
-      "Всего за 199 ₽ ты получаешь профессию, которая окупится после первого клиента",
+    subheadline: "Профессия, которая окупится после первого клиента",
     bulletPoints: [
       "Видеоуроки с доступом навсегда",
       "Поддержка куратора в Telegram",
