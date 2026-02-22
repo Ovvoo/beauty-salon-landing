@@ -123,7 +123,7 @@ const CoursesSection = () => {
                     onClick={() => handleBuyClick(course)}
                     className="btn-primary text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 shrink-0"
                   >
-                    Купить
+                    Подробнее
                   </Button>
                 </div>
               </div>
