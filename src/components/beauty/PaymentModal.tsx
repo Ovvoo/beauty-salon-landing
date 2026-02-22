@@ -6,8 +6,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { CheckCircle, Send, Play, Award, MessageCircle } from "lucide-react";
-import PriceDisplay from "./PriceDisplay";
+import { CheckCircle, Play, Award, MessageCircle } from "lucide-react";
 import type { Course } from "@/lib/types";
 import { submitLead } from "@/lib/leads";
 import { getUtmParams } from "@/lib/utm";
@@ -67,20 +66,22 @@ const PaymentModal = ({ course, open, onOpenChange }: PaymentModalProps) => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
             </>
           )}
-          {/* Title + price on image */}
-          <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
-            <h2 className="font-heading text-base sm:text-lg font-bold text-background leading-tight mb-1">
-              {course.title}
-            </h2>
-            <div className="flex items-baseline gap-2">
-              {course.oldPrice && course.oldPrice > course.price && (
-                <span className="line-through text-background/60 text-xs sm:text-sm">
-                  {course.oldPrice.toLocaleString()} ₽
+          {/* Title + price on frosted glass over image */}
+          <div className="absolute bottom-0 left-0 right-0 p-2.5 sm:p-3">
+            <div className="bg-black/30 backdrop-blur-sm rounded-lg px-3 py-2 sm:px-4 sm:py-2.5">
+              <h2 className="font-heading text-base sm:text-lg font-bold text-background leading-tight mb-0.5">
+                {course.title}
+              </h2>
+              <div className="flex items-baseline gap-2">
+                {course.oldPrice && course.oldPrice > course.price && (
+                  <span className="line-through text-background/50 text-xs sm:text-sm">
+                    {course.oldPrice.toLocaleString()} ₽
+                  </span>
+                )}
+                <span className="font-bold text-gold text-lg sm:text-xl">
+                  {course.price.toLocaleString()} ₽
                 </span>
-              )}
-              <span className="font-bold text-gold text-lg sm:text-xl">
-                {course.price.toLocaleString()} ₽
-              </span>
+              </div>
             </div>
           </div>
         </div>
@@ -133,8 +134,7 @@ const PaymentModal = ({ course, open, onOpenChange }: PaymentModalProps) => {
               className="btn-primary h-11 text-sm px-4 sm:px-5 shrink-0"
               disabled={!email || !isValidEmail(email)}
             >
-              <Send className="w-4 h-4 sm:mr-2" />
-              <span className="hidden sm:inline">Записаться</span>
+              Записаться за {course.price.toLocaleString()} ₽
             </Button>
           </div>
           <p className="text-[10px] sm:text-xs text-center text-muted-foreground leading-tight">
