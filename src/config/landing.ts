@@ -171,7 +171,7 @@ export const LANDING: LandingConfig = {
     sectionId: "reviews",
     tabs: [
       { key: "review", label: "Отзывы учениц" },
-      { key: "news", label: "Наша жизнь" },
+      { key: "news", label: "Новости" },
     ],
     channelLinkLabel: "Все новости в Telegram",
   },
