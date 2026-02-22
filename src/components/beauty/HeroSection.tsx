@@ -36,7 +36,7 @@ const HeroSection = () => {
               </div>
 
               {/* Headline */}
-              <h1 className="font-heading text-[1.5rem] sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mb-3 sm:mb-4 animate-fade-in leading-tight">
+              <h1 className="font-heading text-2xl sm:text-3xl md:text-3xl lg:text-[2.25rem] xl:text-4xl font-bold text-foreground mb-3 sm:mb-4 animate-fade-in leading-tight">
                 {hero.headline.main}
                 <br />
                 <span className="text-primary relative inline-block">
