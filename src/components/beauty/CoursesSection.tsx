@@ -37,7 +37,7 @@ const CoursesSection = () => {
   const hasMoreCourses = courses.length > INITIAL_VISIBLE_COUNT;
 
   return (
-    <section id="courses" className="section-padding bg-muted">
+    <section id="courses" className="section-padding bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="section-title">Мои курсы</h2>
         <p className="text-center text-muted-foreground text-sm sm:text-base mb-6 sm:mb-8 md:mb-12 max-w-2xl mx-auto px-2">

@@ -3,6 +3,9 @@ import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Logo from "@/components/beauty/Logo";
+import { LANDING } from "@/config/landing";
+
+const { header } = LANDING;
 
 const BeautyHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,14 +18,6 @@ const BeautyHeader = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const navLinks = [
-    { href: "/#courses", label: "Курсы" },
-    { href: "/#benefits", label: "Преимущества" },
-    { href: "/#reviews", label: "Отзывы" },
-    { href: "/#news", label: "Новости" },
-    { href: "/#faq", label: "Вопросы" },
-  ];
 
   return (
     <header
@@ -43,7 +38,7 @@ const BeautyHeader = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-            {navLinks.map((link) => (
+            {header.navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -52,8 +47,8 @@ const BeautyHeader = () => {
                 {link.label}
               </a>
             ))}
-            <a href="/#courses">
-              <Button className="btn-primary text-sm lg:text-base">Выбрать курс</Button>
+            <a href={header.ctaHref}>
+              <Button className="btn-primary text-sm lg:text-base">{header.ctaLabel}</Button>
             </a>
           </nav>
 
@@ -77,7 +72,7 @@ const BeautyHeader = () => {
         }`}
       >
         <nav className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex flex-col gap-1 sm:gap-2">
-          {navLinks.map((link) => (
+          {header.navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -87,8 +82,8 @@ const BeautyHeader = () => {
               {link.label}
             </a>
           ))}
-          <a href="/#courses" onClick={() => setIsMenuOpen(false)} className="mt-2">
-            <Button className="btn-primary w-full text-sm sm:text-base py-2.5 sm:py-3">Выбрать курс</Button>
+          <a href={header.ctaHref} onClick={() => setIsMenuOpen(false)} className="mt-2">
+            <Button className="btn-primary w-full text-sm sm:text-base py-2.5 sm:py-3">{header.ctaLabel}</Button>
           </a>
         </nav>
       </div>

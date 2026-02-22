@@ -1,8 +1,10 @@
 import BeautyHeader from "../components/beauty/BeautyHeader";
 import HeroSection from "../components/beauty/HeroSection";
+import PainPointsSection from "../components/beauty/PainPointsSection";
 import CoursesSection from "../components/beauty/CoursesSection";
-import BenefitsSection from "../components/beauty/BenefitsSection";
-import TelegramPostCarousel from "../components/beauty/TelegramPostCarousel";
+import ProductSection from "../components/beauty/ProductSection";
+import LiveSection from "../components/beauty/LiveSection";
+import CTASection from "../components/beauty/CTASection";
 import FAQSection from "../components/beauty/FAQSection";
 import BeautyFooter from "../components/beauty/BeautyFooter";
 
@@ -12,20 +14,11 @@ const BeautyLanding = () => {
       <BeautyHeader />
       <main>
         <HeroSection />
+        <PainPointsSection />
         <CoursesSection />
-        <BenefitsSection />
-        <TelegramPostCarousel
-          type="review"
-          title="Отзывы и преображения"
-          sectionId="reviews"
-        />
-        <TelegramPostCarousel
-          type="news"
-          title="Новости"
-          sectionId="news"
-          bgClassName="bg-background"
-          showChannelLink
-        />
+        <ProductSection />
+        <LiveSection />
+        <CTASection />
         <FAQSection />
       </main>
       <BeautyFooter />
