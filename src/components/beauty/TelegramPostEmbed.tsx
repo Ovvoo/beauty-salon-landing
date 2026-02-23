@@ -1,44 +1,62 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 interface TelegramPostEmbedProps {
   channel: string;
   postId: number;
 }
 
-const WIDGET_SCRIPT_URL = "https://telegram.org/js/telegram-widget.js?22";
-const ACCENT_COLOR = "762E34";
-
-function clearChildren(node: HTMLElement) {
-  while (node.firstChild) {
-    node.removeChild(node.firstChild);
-  }
-}
+const DEFAULT_HEIGHT = 200;
 
 const TelegramPostEmbed = ({ channel, postId }: TelegramPostEmbedProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [height, setHeight] = useState(DEFAULT_HEIGHT);
+
+  const handleMessage = useCallback(
+    (event: MessageEvent) => {
+      if (event.origin !== "https://t.me") return;
+
+      // Telegram sends JSON string via postMessage
+      let msg: Record<string, unknown>;
+      try {
+        const raw = event.data as unknown;
+        msg = typeof raw === "string" ? JSON.parse(raw) : (raw as Record<string, unknown>);
+      } catch {
+        return;
+      }
+
+      if (msg.event !== "resize" || typeof msg.height !== "number") return;
+
+      const iframe = iframeRef.current;
+      if (!iframe) return;
+
+      if (event.source === iframe.contentWindow) {
+        setHeight(msg.height);
+      }
+    },
+    [],
+  );
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
+  }, [handleMessage]);
 
-    clearChildren(container);
+  const src = `https://t.me/${channel}/${postId}?embed=1&userpic=true`;
 
-    const script = document.createElement("script");
-    script.src = WIDGET_SCRIPT_URL;
-    script.async = true;
-    script.setAttribute("data-telegram-post", `${channel}/${postId}`);
-    script.setAttribute("data-width", "100%");
-    script.setAttribute("data-userpic", "true");
-    script.setAttribute("data-color", ACCENT_COLOR);
-
-    container.appendChild(script);
-
-    return () => {
-      clearChildren(container);
-    };
-  }, [channel, postId]);
-
-  return <div ref={containerRef} className="min-h-[200px]" />;
+  return (
+    <iframe
+      ref={iframeRef}
+      src={src}
+      width="100%"
+      height={height}
+      frameBorder={0}
+      scrolling="no"
+      style={{ border: "none", overflow: "hidden", colorScheme: "light dark" }}
+      className="min-h-[200px]"
+      sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+      loading="lazy"
+    />
+  );
 };
 
 export default TelegramPostEmbed;
